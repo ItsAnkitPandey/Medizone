@@ -878,8 +878,8 @@ form>h2 {
 }
 
 .bot-button {
-  height: 70px;
-  width: 70px;
+  height: 55px;
+  width: 55px;
   border-radius: 80px;
   position: fixed;
   bottom: 40px;
@@ -887,7 +887,7 @@ form>h2 {
   background-image: url('https://miro.medium.com/v2/resize:fit:525/1*lyyXmbeoK5JiIBNCnzzjjg.png');
   background-size: cover;
   background-repeat: no-repeat;
-  animation: bot 3s infinite;
+  animation: bot 1s infinite;
   scroll-behavior: smooth;
 }
 @keyframes bot {

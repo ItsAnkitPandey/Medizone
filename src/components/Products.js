@@ -5,7 +5,7 @@ export const products = [
         price: 30,
         quantity: 1,
         img: require('../images/crocine.webp'),
-        description: ''
+        description: 'Headache'
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ export const products = [
         price: 40,
         quantity: 1,
         img: require('../images/aciloc.webp'),
-        description: ''
+        description: 'Acidity'
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ export const products = [
         price: 13,
         quantity: 1,
         img: require('../images/calpol.jpg'),
-        description: ''
+        description: 'Headache Body Pain'
     },
     {
         id: 4,
@@ -29,7 +29,7 @@ export const products = [
         price: 59,
         quantity: 1,
         img: require('../images/vicks.jpg'),
-        description: ''
+        description: 'Cold & Cough'
     },
     {
         id: 5,
@@ -37,7 +37,7 @@ export const products = [
         price: 14,
         quantity: 1,
         img: require('../images/disprin.jpg'),
-        description: ''
+        description: 'Headache'
     },
     {
         id: 6,
@@ -45,7 +45,7 @@ export const products = [
         price: 21,
         quantity: 1,
         img: require('../images/metrogyl.jpg'),
-        description: ''
+        description: 'Loose Motion'
     },
     {
         id: 7,
@@ -53,7 +53,7 @@ export const products = [
         price: 55,
         quantity: 1,
         img: require('../images/omee.webp'),
-        description: ''
+        description: 'Acidity'
     },
     {
         id: 8,
@@ -61,7 +61,7 @@ export const products = [
         price: 120,
         quantity: 1,
         img: require('../images/liv52.webp'),
-        description: ''
+        description: 'Liver'
     },
     {
         id: 9,
@@ -69,7 +69,7 @@ export const products = [
         price: 119,
         quantity: 1,
         img: require('../images/pentop.jpg'),
-        description: ''
+        description: 'Gas & Acidity'
     },
     {
         id: 10,
@@ -77,7 +77,7 @@ export const products = [
         price: 121,
         quantity: 1,
         img: require('../images/corex.jpg'),
-        description: ''
+        description: 'Cough'
     },
     {
         id: 11,
@@ -85,7 +85,143 @@ export const products = [
         price: 18,
         quantity: 1,
         img: require('../images/cetirizine.webp'),
-        description: ''
+        description: 'Alergy'
+    },
+    {
+        id: 12,
+        name:'Paracetamol',
+        price: 6,
+        quantity: 1,
+        img: require('../images/paracetamol.webp'),
+        description: 'Body Pain & Fever'
+    },
+    {
+        id: 13,
+        name:'Tylenol',
+        price: 200,
+        quantity: 1,
+        img: require('../images/tylenol.jpg'),
+        description: 'Flu & Cold'
+    },
+    {
+        id: 14,
+        name:'Panadol',
+        price: 58,
+        quantity: 1,
+        img: require('../images/Panadol.png'),
+        description: 'Flu & Cold'
+    },
+    {
+        id: 15,
+        name:'Codral',
+        price: 32,
+        quantity: 1,
+        img: require('../images/codral.jpg'),
+        description: 'Flu & Cold'
+    },
+    {
+        id: 16,
+        name:'Zeerodol',
+        price: 49,
+        quantity: 1,
+        img: require('../images/zeerodol.jpg'),
+        description: 'Pain'
+    },
+    {
+        id: 17,
+        name:'Aldigesic',
+        price: 63,
+        quantity: 1,
+        img: require('../images/aldigesic.jpg'),
+        description: 'Pain'
+    },
+    {
+        id: 18,
+        name:'Combiflam',
+        price: 39,
+        quantity: 1,
+        img: require('../images/combiflam.webp'),
+        description: 'Pain'
+    },
+    {
+        id: 19,
+        name:'Acnezox Gel',
+        price: 15,
+        quantity: 1,
+        img: require('../images/acnezox.jpg'),
+        description: 'Pimples'
+    },
+    {
+        id: 20,
+        name:'Persol Gel',
+        price: 106,
+        quantity: 1,
+        img: require('../images/persol.jpg'),
+        description: 'Pimples'
+    },
+    {
+        id: 21,
+        name:'NeoClean',
+        price: 135,
+        quantity: 1,
+        img: require('../images/neoclean.webp'),
+        description: 'Pimples'
+    },
+    {
+        id: 22,
+        name:'Sidpiles',
+        price: 165,
+        quantity: 1,
+        img: require('../images/sidpiles.jpg'),
+        description: 'Piles'
+    },
+    {
+        id: 23,
+        name:'Pilex',
+        price: 160,
+        quantity: 1,
+        img: require('../images/pilex.jpg'),
+        description: 'Piles'
+    },
+    {
+        id: 24,
+        name:'Arsh Kalp',
+        price: 108,
+        quantity: 1,
+        img: require('../images/arshkalp.jpg'),
+        description: 'Piles'
+    },
+    {
+        id: 25,
+        name:'Solvin Cough Syrup',
+        price: 73,
+        quantity: 1,
+        img: require('../images/solvin.jpg'),
+        description: 'Cough'
+    },
+    {
+        id: 26,
+        name:'Benadryl Cough Syrup',
+        price: 120,
+        quantity: 1,
+        img: require('../images/benadryl.webp'),
+        description: 'Cough'
+    },
+    {
+        id: 27,
+        name:'Ashthakind Syrup',
+        price: 70.40,
+        quantity: 1,
+        img: require('../images/asthakind.jpg'),
+        description: 'Cough'
+    },
+    {
+        id: 28,
+        name:'Torex Syrup',
+        price: 78,
+        quantity: 1,
+        img: require('../images/torex.png'),
+        description: 'Cough'
     }
 
 ]
