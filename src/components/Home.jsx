@@ -15,7 +15,7 @@ const Home = ({ addToCart, loading }) => {
                             <div className='line'></div>
                         </div>
                         <div className="medicines d-flex  jc-center">
-                            {products.slice(0,4).map((medicine) => {
+                            {products.slice(0,10).map((medicine) => {
                                 return <Medicines key={medicine.id} {...medicine} medicine={medicine} addToCart={addToCart} />
                             })}
                         </div>
