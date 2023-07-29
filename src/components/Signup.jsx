@@ -24,7 +24,7 @@ const Signup = () => {
         // Here, you can add your login logic and make API calls to authenticate the user
         // Save the user data to local storage
         localStorage.setItem('user', JSON.stringify({ name, email, password }));
-        alert('Thank for regitering with Medizone');
+        alert('Thanks for Registering with Medizone');
         navigate('/login')
     };
     return (
