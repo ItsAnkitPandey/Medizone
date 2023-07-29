@@ -732,7 +732,7 @@ tr>td>button {
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 30px;
   color: whitesmoke;
   font-size: 26px;
   margin: 10px;
@@ -982,6 +982,7 @@ form>h2 {
   }
   .grandTotalContainer{
     width: 90%;
+    padding: 10px 0;
   }
   .grandTotal{
     width: 25%;
