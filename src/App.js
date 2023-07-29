@@ -67,7 +67,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000); // Adjust the delay as needed
+    }, 5000); // Adjust the delay as needed
   }, [])
   return (
     <>
