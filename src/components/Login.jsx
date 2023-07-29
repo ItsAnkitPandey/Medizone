@@ -28,6 +28,9 @@ const Login = ({onLogin}) => {
         } else {
            setLoginError(true);
         }
+        if (!storedUser || storedUser.email !== username){
+            alert('Please Create A New Account')
+        }
     };
 
     return (
