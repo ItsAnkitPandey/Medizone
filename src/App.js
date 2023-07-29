@@ -13,11 +13,13 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Chatbot from './components/Chatbot';
 import BotButton from './BotButton';
+import Popup from './components/Popup';
 
 function App() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [showPopup, setShowPopup] = useState(false); 
 
   const handleLogin = () => {
     setLoggedIn(true);
@@ -53,6 +55,7 @@ function App() {
 
     localStorage.setItem('cart', JSON.stringify(cart));   // Adding items to local storage. It can helps in when we refresh page the items will show there as it it.
     // alert("Added to cart");
+    setShowPopup(true); 
   }
 
 
@@ -97,6 +100,7 @@ function App() {
 
           </Routes>
           <Footer />
+          {showPopup && <Popup setShowPopup={setShowPopup} cart={cart} setCart={setCart} />}
         </Router>
       }
     </>
