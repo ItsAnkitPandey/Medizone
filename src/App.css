@@ -983,6 +983,16 @@ form>h2 {
   .grandTotalContainer{
     width: 90%;
   }
+  .grandTotal{
+    width: 25%;
+    text-align: center;
+  }
+  .total{
+    width: 14%;
+  }
+  .quantity{
+    width: 24px;
+  }
 }
 
 
