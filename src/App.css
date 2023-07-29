@@ -958,7 +958,6 @@ form>h2 {
     width: 60%;
   }
   .footer{
-    flex-direction: column;
     align-items: center;
   }
   .col-26{
