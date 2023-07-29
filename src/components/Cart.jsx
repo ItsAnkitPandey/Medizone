@@ -13,16 +13,18 @@ const Cart = ({ cart, setCart }) => {
                     <h5 className="quantity">QUANTITY</h5>
                     <h5 className="total">TOTAL</h5>
                 </div>
-                <>
-                    <div className="products">
-                        {cart.map((medicine) => {
-                            return <CartItem key={medicine.id} {...medicine} cart={cart} setCart={setCart} />
-                        })}
-                    </div>
-                    <TotalPrice cart={cart} />
-                <motion.button whileTap={{ scale: 0.75 }} className="proceed"  >Proceed To Checkout</motion.button>
-                </>
-                
+                {cart.length === 0 ? (<h3>Cart is Empty</h3>) : (
+                    <>
+                        <div className="products">
+                            {cart.map((medicine) => {
+                                return <CartItem key={medicine.id} {...medicine} cart={cart} setCart={setCart} />
+                            })}
+                        </div>
+                        <TotalPrice cart={cart} />
+                        <motion.button whileTap={{ scale: 0.75 }} className="proceed"  >Proceed To Checkout</motion.button>
+                    </>
+                )}
+
             </div>
         </div>
 
