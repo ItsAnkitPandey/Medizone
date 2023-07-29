@@ -33,7 +33,7 @@ const Footer = () => {
 				</div>
 				<hr />
 				<div className="footer-end">
-					<p>Designed by Anchit Gupta</p>
+					<p>Designed by Anchit Gupta and Ankit Pandey</p>
 				</div>
 			</footer>
 

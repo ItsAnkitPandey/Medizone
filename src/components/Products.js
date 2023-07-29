@@ -251,9 +251,9 @@ export const images = [
         id: 1,
         name:'Ankit Pandey',
         role: 'Frontend & Backend',
-        facebook: 'https://facebook.com',
+        facebook: 'https://facebook.com/pandeyankit2001',
         whatsapp: 'https://wa.me/+916391735294',
-        instagram: 'https://www.instagram.com',
+        instagram: 'https://www.instagram.com/ankitpandey_401',
         img: require('../images/ankit.jpeg')
     },
     {
@@ -261,8 +261,8 @@ export const images = [
         name:'Adarsh Mishra',
         role: 'Sponsor',
         facebook: 'https://facebook.com',
-        whatsapp: '',
-        instagram: 'https://www.instagram.com',
+        whatsapp: 'https://wa.me/+918920661951',
+        instagram: 'https://www.instagram.com/im._.adarshmishra',
         img: require('../images/adarssh.jpg')
     },
     {
@@ -270,8 +270,8 @@ export const images = [
         name:'Shailendra Singh',
         role: 'Documentation',
         facebook: 'https://facebook.com',
-        whatsapp: '',
-        instagram: 'https://www.instagram.com',
+        whatsapp: 'https://wa.me/+919838981288',
+        instagram: 'https://www.instagram.com/whimsicalrajput818',
         img: require('../images/shailendra.jpeg')
     },
     {
@@ -279,8 +279,8 @@ export const images = [
         name:'Anchit Gupta',
         role: 'Designer',
         facebook: 'https://facebook.com',
-        whatsapp: '',
-        instagram: 'https://www.instagram.com',
+        whatsapp: 'https://wa.me/+917307207896',
+        instagram: 'https://www.instagram.com/_x_anshu_01',
         img: require('../images/anchit.jpeg')
     },
     {
@@ -288,7 +288,7 @@ export const images = [
         name:'Maneesh Kumar',
         role: 'Spelling Check',
         facebook: 'https://facebook.com',
-        whatsapp: '',
+        whatsapp: 'https://wa.me/+917521069257',
         instagram: 'https://www.instagram.com',
         img: require('../images/manish.jpeg')
     }
