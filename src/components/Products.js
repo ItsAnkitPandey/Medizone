@@ -259,7 +259,7 @@ export const images = [
     {
         id: 2,
         name:'Adarsh Mishra',
-        role: 'Sponsor',
+        role: 'Project Leader',
         facebook: 'https://facebook.com',
         whatsapp: 'https://wa.me/+918920661951',
         instagram: 'https://www.instagram.com/im._.adarshmishra',
@@ -268,7 +268,7 @@ export const images = [
     {
         id: 3,
         name:'Shailendra Singh',
-        role: 'Documentation',
+        role: 'Medicine Expert',
         facebook: 'https://facebook.com',
         whatsapp: 'https://wa.me/+919838981288',
         instagram: 'https://www.instagram.com/whimsicalrajput818',
