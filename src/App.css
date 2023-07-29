@@ -412,6 +412,7 @@ p {
 
 .about-med p {
   font-size: 16px;
+  margin-top: 20px;
 }
 
 .team {
@@ -939,6 +940,9 @@ form>h2 {
     flex-direction: column;
     height: 400px;
     background-color: white;
+  }
+  .login-container > form{
+    height: 33%;
   }
 }
 

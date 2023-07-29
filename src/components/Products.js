@@ -25,7 +25,7 @@ export const products = [
     },
     {
         id: 4,
-        name:'Vicks ction 500',
+        name:'Vicks Action 500',
         price: 59,
         quantity: 1,
         img: require('../images/vicks.jpg'),
@@ -57,7 +57,7 @@ export const products = [
     },
     {
         id: 8,
-        name:'Liv 42',
+        name:'Liv 52',
         price: 120,
         quantity: 1,
         img: require('../images/liv52.webp'),
