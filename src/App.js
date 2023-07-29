@@ -30,13 +30,7 @@ function App() {
     setLoggedIn(false);
     localStorage.removeItem('loggedIn'); // Remove the login status from local storage
   };
-  useEffect(() => {
-    const storedLoggedIn = localStorage.getItem('loggedIn');
-    if (storedLoggedIn === 'true') {
-      setLoggedIn(true);
-    }
-    setLoading(false);
-  }, []);
+
 
   const addToCart = (data) => {
     const existingItem = cart.find((item) => item.id === data.id);
@@ -65,13 +59,23 @@ function App() {
     if (storedCart) {
       setCart(JSON.parse(storedCart));
     }
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
+    // Retrieve the login status from local storage
+    const storedLoggedIn = localStorage.getItem('loggedIn');
+    if (storedLoggedIn === 'true') {
+      setLoggedIn(true);
+    }
+     // Hide the loader after 5 seconds (5000 milliseconds)
+     const timer = setTimeout(() => {
       setLoading(false);
-    }, 5000); // Adjust the delay as needed
-  }, [])
+    }, 3000);
+
+    // Cleanup the timer when the component unmounts or when loading becomes false
+    return () => clearTimeout(timer);
+  }, []); 
+
+ 
+
+
   return (
     <>
       {loading ? <Loader /> :
