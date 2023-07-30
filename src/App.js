@@ -14,6 +14,7 @@ import Signup from './components/Signup';
 import Chatbot from './components/Chatbot';
 import BotButton from './BotButton';
 import Popup from './components/Popup';
+import Checkout from './components/Checkout';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -100,7 +101,7 @@ function App() {
             <Route exact path="/login" element={<Login onLogin={handleLogin} />}></Route>
             <Route exact path="/signup" element={<Signup />}></Route>
             <Route exact path="/chatbot" element={<Chatbot />}></Route>
-
+            <Route exact path="/checkout" element={<Checkout />}></Route>
 
           </Routes>
           <Footer />

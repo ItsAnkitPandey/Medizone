@@ -2,8 +2,13 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import CartItem from './CartItem'
 import TotalPrice from './TotalPrice'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = ({ cart, setCart }) => {
+    const navigate = useNavigate();
+    const handleCheckout = ()=>{
+        navigate('/checkout')
+    }
     return (
         <div>
             <div className="product-container">
@@ -21,7 +26,7 @@ const Cart = ({ cart, setCart }) => {
                             })}
                         </div>
                         <TotalPrice cart={cart} />
-                        <motion.button whileTap={{ scale: 0.75 }} className="proceed"  >Proceed To Checkout</motion.button>
+                        <motion.button whileTap={{ scale: 0.75 }} className="proceed" onClick={handleCheckout} >Proceed To Checkout</motion.button>
                     </>
                 )}
 
