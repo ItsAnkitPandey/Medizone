@@ -26,7 +26,7 @@ const Thankyou = () => {
                 <h1>Thank You For Purchasing Medicines With Medizone</h1>
                 <p>We will always there for you.</p>
             </div>
-            <p>This page will redirect in <span id="timer"></span>s.</p>
+            <p>This page will redirect in <span id="timer">{count}</span>s.</p>
             <Link to='./'>Go To Home</Link>
 
         </div>
