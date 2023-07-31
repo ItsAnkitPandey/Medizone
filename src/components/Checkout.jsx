@@ -131,7 +131,7 @@ const Checkout = ({ cart }) => {
               <option value="BLR">Belarus</option>
               <option value="BEL">Belgium</option>
               <option value="BLZ">Belize</option>
-              <option value="BEN">Benin</option>
+              <option value="BEN">Berlin</option>
               <option value="BMU">Bermuda</option>
               <option value="BTN">Bhutan</option>
               <option value="BOL">Bolivia, Plurinational State of</option>
