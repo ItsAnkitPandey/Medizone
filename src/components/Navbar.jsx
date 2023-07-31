@@ -18,7 +18,7 @@ const Navbar = ({ cart, loggedIn, handleLogout }) => {
     <div className={`container ${showMenu ? 'active' : ''}`}>
       <div className="logo ">
         <Link to="/"><motion.img whileTap={{ scale: 0.75 }} src={logo} alt="" /></Link>
-        {loggedIn ? <p style={{ marginLeft: '10px'  }}><i class="fa-solid fa-user" style={{ marginRight: '5px'  }}></i> {storedUser.name}</p> : ''}
+        {loggedIn ? <p style={{ marginLeft: '10px'  }}><i className="fa-solid fa-user" style={{ marginRight: '5px'  }}></i> {storedUser.name}</p> : ''}
       </div>
       <div className={`nav ${showMenu ? 'active' : ''}`}>
         <Link to="/"><i className='fa-solid fa-house'></i></Link>

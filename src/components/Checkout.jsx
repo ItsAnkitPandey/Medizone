@@ -1,6 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import './checkout.css'
+
 const Checkout = ({ cart }) => {
+  const navigate = useNavigate();
+  const handleSubmit = (event)=>{
+    event.preventDefault();
+    navigate('/thankyou')
+  }
   const subtotal = cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
   return (
     <div className="checkout-container">
@@ -347,7 +354,7 @@ const Checkout = ({ cart }) => {
               <img src="https://www.logolynx.com/images/logolynx/c3/c36093ca9fb6c250f74d319550acac4d.jpeg" alt="" width="50" />
             </span>
           </div> */}
-          <button type="button">Place Order</button>
+          <button type="submit" onClick={handleSubmit}>Place Order</button>
         </div>
         {/* <!-- Yorder --> */}
       </div>
