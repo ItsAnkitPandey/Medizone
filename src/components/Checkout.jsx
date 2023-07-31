@@ -1,13 +1,82 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import './checkout.css'
 
 const Checkout = ({ cart }) => {
   const navigate = useNavigate();
-  const handleSubmit = (event)=>{
+  const [formData, setFormData] = useState({
+    fname: '',
+    lname: '',
+    cn: '',
+    selection: '',
+    houseadd: '',
+    apartment: '',
+    city: '',
+    state: '',
+    postcode: '',
+    phone: '',
+    email: '',
+  });
+  const [formErrors, setFormErrors] = useState({
+    fname: '',
+    lname: '',
+    selection: '',
+    houseadd: '',
+    city: '',
+    state: '',
+    postcode: '',
+    phone: '',
+    email: '',
+  });
+  const handleSubmit = (event) => {
     event.preventDefault();
-    navigate('/thankyou')
-  }
+  
+    // Perform form validation here
+    const errors = {};
+    if (formData.fname.trim() === '') {
+      errors.fname = 'First Name is required';
+    }
+    if (formData.lname.trim() === '') {
+      errors.lname = 'Last Name is required';
+    }
+    if (formData.selection === 'select') {
+      errors.selection = 'Please select a country';
+    }
+    if (formData.houseadd.trim() === '') {
+      errors.houseadd = 'Street Address is required';
+    }
+    if (formData.city.trim() === '') {
+      errors.city = 'Town / City is required';
+    }
+    if (formData.state.trim() === '') {
+      errors.state = 'State / County is required';
+    }
+    if (formData.postcode.trim() === '') {
+      errors.postcode = 'Postcode / ZIP is required';
+    }
+    if (formData.phone.trim() === '') {
+      errors.phone = 'Phone is required';
+    }
+    if (formData.email.trim() === '') {
+      errors.email = 'Email Address is required';
+    } else if (!isValidEmail(formData.email)) {
+      errors.email = 'Invalid email format';
+    }
+  
+    // If there are errors, set them in the state and prevent navigation
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+    } else {
+      // No errors, navigate to the "thankyou" page
+      navigate('/thankyou');
+    }
+  };
+  
+  // Helper function to validate email format
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
   const subtotal = cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
   return (
     <div className="checkout-container">
@@ -16,21 +85,23 @@ const Checkout = ({ cart }) => {
       </div>
       <div className="checkout-d-flex">
         <form action="" method="">
+        <label>
+  <span className="fname">First Name <span className="required">*</span></span>
+  <input type="text" name="fname" value={formData.fname} onChange={(e) => setFormData({ ...formData, fname: e.target.value })} />
+  {formErrors.fname && <span className="error">{formErrors.fname}</span>}
+</label>
           <label>
-            <span className="fname">First Name <span className="required">*</span></span>
-            <input type="text" name="fname" />
-          </label>
-          <label>
-            <span className="lname">Last Name <span className="required">*</span></span>
-            <input type="text" name="lname" />
-          </label>
+  <span className="lname">Last Name <span className="required">*</span></span>
+  <input type="text" name="lname" value={formData.lname} onChange={(e) => setFormData({ ...formData, lname: e.target.value })} />
+  {formErrors.lname && <span className="error">{formErrors.lname}</span>}
+</label>
           <label>
             <span>Medical Store Name (Optional)</span>
             <input type="text" name="cn" />
           </label>
           <label>
             <span>Country <span className="required">*</span></span>
-            <select name="selection">
+            <select name="selection" value={formData.selection} onChange={(e) => setFormData({ ...formData, selection: e.target.value })}>
               <option value="select">Select a country...</option>
               <option value="AFG">Afghanistan</option>
               <option value="ALA">Åland Islands</option>
@@ -282,34 +353,43 @@ const Checkout = ({ cart }) => {
               <option value="ZMB">Zambia</option>
               <option value="ZWE">Zimbabwe</option>
             </select>
+            {formErrors.selection && <span className="error">{formErrors.selection}</span>}
           </label>
           <label>
             <span>Street Address <span className="required">*</span></span>
-            <input type="text" name="houseadd" placeholder="House number and street name" required />
+            <input type="text" name="houseadd" placeholder="House number and street name" value={formData.houseadd} onChange={(e) => setFormData({ ...formData, houseadd: e.target.value })} required />
+            {formErrors.houseadd && <span className="error">{formErrors.houseadd}</span>}
           </label>
           <label>
             <span>&nbsp;</span>
-            <input type="text" name="apartment" placeholder="Apartment, suite, unit etc. (optional)" />
+            <input type="text" name="apartment" placeholder="Apartment, suite, unit etc. (optional)" value={formData.apartment} onChange={(e) => setFormData({ ...formData, apartment: e.target.value })} />
+            {formErrors.apartment && <span className="error">{formErrors.apartment}</span>}
           </label>
           <label>
             <span>Town / City <span className="required">*</span></span>
-            <input type="text" name="city" />
+            <input type="text" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })}/>
+            {formErrors.city && <span className="error">{formErrors.city}</span>}
+            
           </label>
           <label>
             <span>State / County <span className="required">*</span></span>
-            <input type="text" name="city" />
+            <input type="text" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
+            {formErrors.city && <span className="error">{formErrors.city}</span>}
           </label>
           <label>
             <span>Postcode / ZIP <span className="required">*</span></span>
-            <input type="text" name="city" />
+            <input type="text" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
+            {formErrors.city && <span className="error">{formErrors.city}</span>}
           </label>
           <label>
             <span>Phone <span className="required">*</span></span>
-            <input type="tel" name="city" />
+            <input type="tel" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })}/>
+            {formErrors.city && <span className="error">{formErrors.city}</span>}
           </label>
           <label>
             <span>Email Address <span className="required">*</span></span>
-            <input type="email" name="city" />
+            <input type="email" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })}/>
+            {formErrors.city && <span className="error">{formErrors.city}</span>}
           </label>
         </form>
         {/* //Yorder     */}
