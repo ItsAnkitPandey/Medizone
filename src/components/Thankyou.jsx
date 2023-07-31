@@ -23,7 +23,7 @@ const Thankyou = () => {
         <div className='thank-container'>
             <div className="thank">
                 <i class="fa-solid fa-circle-check fa-4x" style={{color:'#09a706'}}></i>
-                <h1>Thank You For Purchasing Medicines With Medizone</h1>
+                <h1>Order Placed Successfully.</h1>
                 <p>We will always there for you.</p>
             </div>
             <p>This page will redirect in <span id="timer">{count}</span>s.</p>
