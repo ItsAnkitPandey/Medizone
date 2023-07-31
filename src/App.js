@@ -101,7 +101,7 @@ function App() {
             <Route exact path="/login" element={<Login onLogin={handleLogin} />}></Route>
             <Route exact path="/signup" element={<Signup />}></Route>
             <Route exact path="/chatbot" element={<Chatbot />}></Route>
-            <Route exact path="/checkout" element={<Checkout />}></Route>
+            <Route exact path="/checkout" element={<Checkout cart={cart}/>}></Route>
 
           </Routes>
           <Footer />
