@@ -147,6 +147,9 @@
   cursor: pointer;
   background: #428a7d;
 }
+.error{
+  color: red;
+}
 @media screen and (orientation: portrait) {
   .checkout-d-flex{
     flex-direction: column;

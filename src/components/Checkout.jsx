@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './checkout.css'
 
@@ -11,7 +11,7 @@ const Checkout = ({ cart }) => {
     selection: '',
     houseadd: '',
     apartment: '',
-    city: '',
+    postcodecity: '',
     state: '',
     postcode: '',
     phone: '',
@@ -27,10 +27,12 @@ const Checkout = ({ cart }) => {
     postcode: '',
     phone: '',
     email: '',
+    paymentOption: '',
   });
+  const [paymentOption, setPaymentOption] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+
     // Perform form validation here
     const errors = {};
     if (formData.fname.trim() === '') {
@@ -62,7 +64,10 @@ const Checkout = ({ cart }) => {
     } else if (!isValidEmail(formData.email)) {
       errors.email = 'Invalid email format';
     }
-  
+    // Check if the payment option is selected
+    if (paymentOption === '') {
+      errors.paymentOption = 'Please select a payment option';
+    }
     // If there are errors, set them in the state and prevent navigation
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
@@ -71,7 +76,7 @@ const Checkout = ({ cart }) => {
       navigate('/thankyou');
     }
   };
-  
+
   // Helper function to validate email format
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -85,16 +90,16 @@ const Checkout = ({ cart }) => {
       </div>
       <div className="checkout-d-flex">
         <form action="" method="">
-        <label>
-  <span className="fname">First Name <span className="required">*</span></span>
-  <input type="text" name="fname" value={formData.fname} onChange={(e) => setFormData({ ...formData, fname: e.target.value })} />
-  {formErrors.fname && <span className="error">{formErrors.fname}</span>}
-</label>
           <label>
-  <span className="lname">Last Name <span className="required">*</span></span>
-  <input type="text" name="lname" value={formData.lname} onChange={(e) => setFormData({ ...formData, lname: e.target.value })} />
-  {formErrors.lname && <span className="error">{formErrors.lname}</span>}
-</label>
+            <span className="fname">First Name <span className="required">*</span></span>
+            <input type="text" name="fname" value={formData.fname} onChange={(e) => setFormData({ ...formData, fname: e.target.value })} />
+            {formErrors.fname && <span className="error">{formErrors.fname}</span>}
+          </label>
+          <label>
+            <span className="lname">Last Name <span className="required">*</span></span>
+            <input type="text" name="lname" value={formData.lname} onChange={(e) => setFormData({ ...formData, lname: e.target.value })} />
+            {formErrors.lname && <span className="error">{formErrors.lname}</span>}
+          </label>
           <label>
             <span>Medical Store Name (Optional)</span>
             <input type="text" name="cn" />
@@ -367,29 +372,29 @@ const Checkout = ({ cart }) => {
           </label>
           <label>
             <span>Town / City <span className="required">*</span></span>
-            <input type="text" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })}/>
+            <input type="text" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
             {formErrors.city && <span className="error">{formErrors.city}</span>}
-            
+
           </label>
           <label>
             <span>State / County <span className="required">*</span></span>
-            <input type="text" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
-            {formErrors.city && <span className="error">{formErrors.city}</span>}
+            <input type="text" name="state" value={formData.state} onChange={(e) => setFormData({ ...formData, state: e.target.value })} />
+            {formErrors.state && <span className="error">{formErrors.state}</span>}
           </label>
           <label>
             <span>Postcode / ZIP <span className="required">*</span></span>
-            <input type="text" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
-            {formErrors.city && <span className="error">{formErrors.city}</span>}
+            <input type="text" name="postcode" value={formData.postcode} onChange={(e) => setFormData({ ...formData, postcode: e.target.value })} />
+            {formErrors.postcode && <span className="error">{formErrors.postcode}</span>}
           </label>
           <label>
             <span>Phone <span className="required">*</span></span>
-            <input type="tel" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })}/>
-            {formErrors.city && <span className="error">{formErrors.city}</span>}
+            <input type="tel" name="phone" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
+            {formErrors.phone && <span className="error">{formErrors.phone}</span>}
           </label>
           <label>
             <span>Email Address <span className="required">*</span></span>
-            <input type="email" name="city" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })}/>
-            {formErrors.city && <span className="error">{formErrors.city}</span>}
+            <input type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+            {formErrors.email && <span className="error">{formErrors.email}</span>}
           </label>
         </form>
         {/* //Yorder     */}
@@ -427,8 +432,10 @@ const Checkout = ({ cart }) => {
             <input type="radio" name="dbt" value="dbt" checked /> Direct Bank Transfer
           </div> */}
           <div>
-            <input type="radio" name="dbt" value="cd" /> Cash on Delivery
+            <input type="radio" name="dbt" value="cd" checked={paymentOption === 'cd'}
+            onChange={(e) => setPaymentOption(e.target.value)} /> Cash on Delivery
           </div>
+          {formErrors.paymentOption && <span className="error">{formErrors.paymentOption}</span>}
           {/* <div>
             <input type="radio" name="dbt" value="cd" /> Paypal <span>
               <img src="https://www.logolynx.com/images/logolynx/c3/c36093ca9fb6c250f74d319550acac4d.jpeg" alt="" width="50" />
