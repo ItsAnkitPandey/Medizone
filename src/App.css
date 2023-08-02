@@ -123,13 +123,15 @@ html {
   align-items: center;
   margin-left: 10px;
 }
-.logo2{
+
+.logo2 {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.logo img, .logo2 img {
+.logo img,
+.logo2 img {
   width: 200px;
   height: 50px;
   padding: 5px;
@@ -171,6 +173,42 @@ html {
   color: white;
 }
 
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  margin: 3px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Active styles for mobile menu */
+.container.active .nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.container.active .nav a {
+  display: block;
+  margin: 5px;
+}
+
+.container.active .hamburger .bar:nth-child(1) {
+  transform: translateY(6px) rotate(-45deg);
+}
+
+.container.active .hamburger .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.container.active .hamburger .bar:nth-child(3) {
+  transform: translateY(-6px) rotate(45deg);
+}
 /* carousel css */
 
 .carousel-container {
@@ -304,10 +342,12 @@ p {
   background-color: rgba(63, 123, 234, 0.556);
   padding: 40px 0px;
 }
-.footer{
+
+.footer {
   display: flex;
   justify-content: space-around;
 }
+
 .footer-wrapper footer {
   width: 90%;
   margin-left: auto;
@@ -327,7 +367,8 @@ p {
   flex-direction: column;
 }
 
-.col-25, .col-26 {
+.col-25,
+.col-26 {
   width: 23%;
   display: inline-block;
   text-align: left;
@@ -347,17 +388,20 @@ p {
   color: rgb(50, 50, 50);
 }
 
-.col-25 ul, .col-26 ul {
+.col-25 ul,
+.col-26 ul {
   padding: 0px 0px;
   margin: 0px 0px;
 }
 
-.col-25 ul li, .col-26 ul li {
+.col-25 ul li,
+.col-26 ul li {
   list-style-type: none;
   margin-bottom: 15px;
 }
 
-.col-25 ul li a, .col-26 ul li a {
+.col-25 ul li a,
+.col-26 ul li a {
   text-decoration: none;
   color: rgb(50, 50, 50);
   font-size: 16px;
@@ -373,42 +417,6 @@ p {
 }
 
 
-/* Hamburger menu */
-.hamburger {
-  display: none;
-  cursor: pointer;
-}
-
-.bar {
-  width: 30px;
-  height: 3px;
-  background-color: black;
-  margin: 3px;
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Active styles for mobile menu */
-.container.active .nav {
-  display: flex;
-  flex-direction: column;
-}
-
-.container.active .nav a {
-  display: block;
-  margin: 5px;
-}
-
-.container.active .hamburger .bar:nth-child(1) {
-  transform: translateY(6px) rotate(-45deg);
-}
-
-.container.active .hamburger .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.container.active .hamburger .bar:nth-child(3) {
-  transform: translateY(-6px) rotate(45deg);
-}
 
 
 
@@ -903,17 +911,21 @@ form>h2 {
   animation: bot 1s infinite;
   scroll-behavior: smooth;
 }
+
 @keyframes bot {
   0% {
     bottom: 40px;
     right: 40px;
     transform: scale(1);
   }
+
   50% {
     bottom: 30px;
     right: 30px;
-    transform: scale(1.2); /* Scale up to make it look like a bounce */
+    transform: scale(1.2);
+    /* Scale up to make it look like a bounce */
   }
+
   100% {
     bottom: 40px;
     right: 40px;
@@ -953,47 +965,57 @@ form>h2 {
     height: 400px;
     background-color: white;
   }
-  .login-container > form{
+
+  .login-container>form {
     height: 64%;
     width: 60%;
   }
-  .footer{
+
+  .footer {
     align-items: center;
   }
-  .col-26{
+
+  .col-26 {
     display: none;
   }
-  .slide{
+
+  .slide {
     padding: 0;
   }
-  .product-container{
+
+  .product-container {
     margin: 20px 15px;
   }
-  .product-container i{
+
+  .product-container i {
     font-size: 15px;
     margin: 0 5px;
   }
-  .product img{
+
+  .product img {
     width: 50px;
     height: 70px;
   }
-  .product_name{
+
+  .product_name {
     margin-left: 6px;
   }
-  .grandTotalContainer{
+
+  .grandTotalContainer {
     width: 90%;
     padding: 10px 0;
   }
-  .grandTotal{
+
+  .grandTotal {
     width: 25%;
     text-align: center;
   }
-  .total{
+
+  .total {
     width: 16%;
   }
-  .quantity{
+
+  .quantity {
     width: 75px;
   }
 }
-
-
