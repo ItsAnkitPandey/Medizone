@@ -419,7 +419,7 @@ const Checkout = ({ cart }) => {
               </tr>
               <tr>
                 <td>Subtotal</td>
-                <td>₹{subtotal + (subtotal * 18 / 100)}</td>
+                <td>₹{(subtotal + (subtotal * 18 / 100)).toFixed(2)}</td>
               </tr>
               <tr>
                 <td>Shipping</td>
