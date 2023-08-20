@@ -114,7 +114,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  font-family: 'Poppins', sans-serif !important;
 
 }
 
@@ -253,7 +253,7 @@ html {
 /* ----------------------------Medicines------------------------- */
 
 .med-container {
-  background-color: azure;
+  background-color: rgb(255, 255, 255);
   margin-top: 20px;
 }
 
