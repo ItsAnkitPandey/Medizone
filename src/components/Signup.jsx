@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
+import { Url } from '../utils/Url';
+import axios from 'axios';
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -19,14 +21,32 @@ const Signup = () => {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Here, you can add your login logic and make API calls to authenticate the user
-        // Save the user data to local storage
-        localStorage.setItem('user', JSON.stringify({ name, email, password }));
-        alert('Thanks for Registering with Medizone');
-        navigate('/login')
+        const userData = {
+            email: email,
+            firstName: name,
+            password: password
+        };
+        try {
+            const response = await axios.post("https://cdde-2401-4900-1c3c-b4c8-e802-a2de-8a8-cede.ngrok-free.app/api/SignUp", userData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            });
+
+            if (response?.status === 201) {
+                alert('Thanks for Registering with Medizone');
+                navigate('/login');
+            } else {
+                alert(response?.data?.message);
+            }
+        } catch (error) {
+            console.error('Error during sign-up:', error);
+        }
     };
+
     return (
         <div>
             <div className="login-container">
