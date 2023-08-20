@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
-import { Url } from '../utils/Url';
 import axios from 'axios';
 
 const Signup = () => {
