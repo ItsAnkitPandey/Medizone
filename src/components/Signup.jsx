@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Signup = () => {
@@ -28,10 +28,10 @@ const Signup = () => {
             password: password
         };
         try {
-            const response = await axios.post("https://cdde-2401-4900-1c3c-b4c8-e802-a2de-8a8-cede.ngrok-free.app/api/SignUp", userData, {
+            const response = await axios.post("https://ed18-2401-4900-1f3d-9f41-3984-f344-1df4-6889.ngrok-free.app/api/SignUp",
+                userData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
                 }
             });
 
