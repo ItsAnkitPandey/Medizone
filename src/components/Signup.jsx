@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import {  Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Signup = () => {
@@ -27,15 +27,23 @@ const Signup = () => {
             firstName: name,
             password: password
         };
+
         try {
-            const response = await axios.post("https://ed18-2401-4900-1f3d-9f41-3984-f344-1df4-6889.ngrok-free.app/api/SignUp",
+            await axios.post("https://ed18-2401-4900-1f3d-9f41-3984-f344-1df4-6889.ngrok-free.app/api/SignUp",
                 userData, {
                 headers: {
                     'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': "*"
                 }
-            });
+            })
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
 
-            if (response?.status === 201) {
+            if (response?.status === 200) {
                 alert('Thanks for Registering with Medizone');
                 navigate('/login');
             } else {
