@@ -29,19 +29,14 @@ const Signup = () => {
         };
 
         try {
-            await axios.post("https://ed18-2401-4900-1f3d-9f41-3984-f344-1df4-6889.ngrok-free.app/api/SignUp",
+           const response = await axios.post("https://14e7-2401-4900-1c3d-43e-56b0-75d1-da3d-65fd.ngrok-free.app/api/SignUp",
                 userData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': "*"
-                }
-            })
-                .then((response) => {
-                    console.log(response)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+                    'Access-Control-Allow-Origin': "*",
+                },
+            });
+                
 
             if (response?.status === 200) {
                 alert('Thanks for Registering with Medizone');
