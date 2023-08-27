@@ -29,16 +29,14 @@ const Signup = () => {
         };
 
         try {
-           const response = await axios.post("https://14e7-2401-4900-1c3d-43e-56b0-75d1-da3d-65fd.ngrok-free.app/api/SignUp",
+           const response = await axios.post("https://dba0-2401-4900-1c3c-d5b2-4478-f602-9297-3398.ngrok-free.app/api/SignUp",
                 userData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': "*",
                 },
             });
-                
-
-            if (response?.status === 200) {
+            if (response?.status === 201) {
                 alert('Thanks for Registering with Medizone');
                 navigate('/login');
             } else {
