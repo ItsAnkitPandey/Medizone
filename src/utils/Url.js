@@ -1,1 +1,0 @@
-export const Url = "https://cdde-2401-4900-1c3c-b4c8-e802-a2de-8a8-cede.ngrok-free.app"

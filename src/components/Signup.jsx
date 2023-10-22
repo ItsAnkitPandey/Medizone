@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import {  Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useSnackbar } from 'notistack';
 
 const Signup = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -23,28 +25,21 @@ const Signup = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const userData = {
-            email: email,
-            firstName: name,
-            password: password
+            email,
+            name,
+            password
         };
 
-        try {
-           const response = await axios.post("https://dba0-2401-4900-1c3c-d5b2-4478-f602-9297-3398.ngrok-free.app/api/SignUp",
-                userData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': "*",
-                },
-            });
-            if (response?.status === 201) {
-                alert('Thanks for Registering with Medizone');
+       axios
+            .post('http://localhost:5555/user/signup', userData)
+            .then(()=>{
+                enqueueSnackbar('User Registered Successfully.', {variant: 'success'});
                 navigate('/login');
-            } else {
-                alert(response?.data?.message);
-            }
-        } catch (error) {
-            console.error('Error during sign-up:', error);
-        }
+            })
+            .catch((error)=>{
+                console.log(error);
+                enqueueSnackbar('some error occured', {variant:'default'})
+            })
     };
 
     return (
