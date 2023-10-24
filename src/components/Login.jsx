@@ -62,9 +62,9 @@ const Login = ({ onLogin }) => {
 
             <form onSubmit={handleSubmit}>
                 <h2>Login to Medizone</h2>
-                <input type="text" id="username" placeholder='Enter  Username or Email' name="email" value={email} onChange={handleUsernameChange} required />
+                <input type="email" id="username" placeholder='Enter  Username or Email' name="email" value={email} onChange={handleUsernameChange} required />
 
-                <input type="password" id="password" placeholder='Enter Password' name="password" value={password} onChange={handlePasswordChange} required />
+                <input type="password" id="password" placeholder='Enter Password' name="password" value={password} onChange={handlePasswordChange} minLength={5} required />
                 {loginError && <p style={{ color: 'red' }}>Invalid credentials. Please try again.</p>}
 
                 {loading ? (<Spinner />) : (<button type="submit">Login</button>)}

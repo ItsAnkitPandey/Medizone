@@ -52,9 +52,9 @@ const Signup = () => {
             <div className="login-container">
                 <form onSubmit={handleSubmit}>
                     <h2>Signup to Medizone</h2>
-                    <input type="text" id="name" placeholder='Enter Full Name' name="name" value={name} onChange={handleNameChange} required />
+                    <input type="text" id="name" placeholder='Enter Full Name' name="name" value={name} onChange={handleNameChange} minLength={3} required />
                     <input type="email" id="email" placeholder='Enter Email' name="email" value={email} onChange={handleEmailChange} required />
-                    <input type="password" id="password" placeholder='Enter Password' name="password" value={password} onChange={handlePasswordChange} required />
+                    <input type="password" id="password" placeholder='Enter Password' name="password" value={password} onChange={handlePasswordChange} minLength={5} required />
                     {loading ? <Spinner /> : (<button type="submit">Signup</button>)}
                     <div className='sign'>
                         <Link to="/login"><p>Already have Account? Login</p></Link>
