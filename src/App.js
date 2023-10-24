@@ -66,7 +66,7 @@ function App() {
     if (storedLoggedIn === 'true') {
       setLoggedIn(true);
     }
-     // Hide the loader after 5 seconds (5000 milliseconds)
+     // Hide the loader after 3 seconds (3000 milliseconds)
      const timer = setTimeout(() => {
       setLoading(false);
     }, 3000);
