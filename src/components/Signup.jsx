@@ -34,7 +34,7 @@ const Signup = () => {
         };
         setLoading(true);
         axios
-            .post('http://localhost:5555/user/signup', userData)
+            .post(`${process.env.REACT_APP_API_KEY}/user/signup`, userData)
             .then(() => {
                 setLoading(false);
                 enqueueSnackbar('User Registered Successfully.', { variant: 'success' });
@@ -43,7 +43,7 @@ const Signup = () => {
             .catch((error) => {
                 setLoading(false);
                 console.log(error);
-                enqueueSnackbar('some error occured', { variant: 'error' })
+                enqueueSnackbar(error.response.data.error, { variant: 'error' })
             })
     };
 

@@ -28,7 +28,7 @@ const Login = ({ onLogin }) => {
         }
         setLoading(true)
         axios
-            .post('http://localhost:5555/user/login', data)
+            .post(`${process.env.REACT_APP_API_KEY}/user/login`, data)
             .then((res) => {
                 if (res.data.success === true) {
                     onLogin();
