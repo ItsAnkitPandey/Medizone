@@ -103,11 +103,15 @@ html {
 }
 
 
+.hide-for-desktop{
+  display: none;
+}
+
 /* navabr */
 .container {
   margin-top: 2px;
   background-color: white;
-  box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 0px 1px 4px #92a1b026;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -1017,5 +1021,81 @@ form>h2 {
 
   .quantity {
     width: 75px;
+  }
+
+  .hide-for-mobile{
+    display: none;
+  }
+
+  .mob-medicines{
+    display: flex;
+    /* flex-direction: row; */
+    align-items: center;
+    justify-content: space-between;
+    /* align-self: center; */
+    margin: 1em;
+    padding: 1em;
+    overflow: hidden;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-align: center;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+  }
+  .mob-med-item{
+    /* margin: 3% 40%; */
+    /* border: 1px solid red; */
+    /* padding: 4% 5%; */
+    scroll-behavior: smooth;
+    scroll-snap-align: center;
+    scroll-snap-type: x mandatory;
+    /* align-items: center; */
+    /* justify-content: center; */
+    width: 99%;
+    background-color: rgb(243, 243, 243);
+    box-shadow: 3px 3px 5px 6px #ccc;
+    border-radius: 10px;
+    padding: 9px;
+    margin-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* .med-item {
+    margin: 10px;
+    background-color: rgb(243, 243, 243);
+    box-shadow: 3px 3px 5px 6px #ccc;
+    border-radius: 10px;
+    padding: 9px;
+    margin-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  
+  } */
+  
+  .mob-med-item>img {
+    height: 200px;
+    width: 200px;
+    border-radius: 5px 10px;
+  }
+  
+  .mob-med-item>h4,
+  p {
+    margin: 0;
+  }
+  
+  .mob-med-item>button {
+    background-color: rgb(79, 79, 224);
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .mob-med-item>button:hover {
+    background-color: blue;
   }
 }

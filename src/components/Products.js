@@ -293,3 +293,37 @@ export const images = [
         img: require('../images/manish.jpeg')
     }
  ]
+
+
+ export const category = [
+    {
+        id: 1,
+        name: 'Personal Care',
+        img: require('../images/PersonalCare.jpg'),
+        itemCount: '14'
+    }, 
+    {
+        id: 2,
+        name: 'Covid Essentials',
+        img: require('../images/CovidEssentials.jpg'),
+        itemCount: '20'
+    },
+    {
+        id: 3,
+        name: 'Prescription',
+        img: require('../images/Prescription.jpg'),
+        itemCount: '100'
+    },
+    {
+        id: 4,
+        name: 'Baby Care',
+        img: require('../images/BabyCare.jpeg'),
+        itemCount: '10'
+    },
+    {
+        id: 5,
+        name: 'Equipements',
+        img: require('../images/Devices.jpg'),
+        itemCount: '23'
+    }
+ ]

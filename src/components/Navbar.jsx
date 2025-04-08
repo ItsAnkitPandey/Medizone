@@ -26,7 +26,6 @@ const Navbar = ({ cart, loggedIn, handleLogout }) => {
         <Link to="/about">About Us</Link>
         {loggedIn ? <Link onClick={handleLogout}>Logout</Link> : <Link to="/login">Login</Link>}
         <Link to="/contact">Contact Us</Link>
-        <Link to="mailto:ankitpandey.272003@gmail.com" target="_blank"><i className="fa-regular fa-paper-plane"></i></Link>
         <Link to="/cart"><i className="fa-solid fa-cart-shopping"></i><span className='item-count'>{totalItemsInCart}</span></Link>
       </div>
       <div className="hamburger" onClick={toggleMenu}>

@@ -3,12 +3,15 @@ import Medicines from './Medicines'
 import { products } from './Products'
 import ProductCarousel from './ProductCarousel'
 import { Link } from 'react-router-dom'
+import Category from './Category'
 
 const Home = ({ addToCart, loading }) => {
 
     return (
         <div>
-                <div> <ProductCarousel />
+                <div> 
+                    <ProductCarousel />
+                    <Category/>
                     <div className="med-container">
                         <div className="med-heading ">
                             <h2>Medicines</h2>
