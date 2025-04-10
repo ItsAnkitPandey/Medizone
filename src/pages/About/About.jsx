@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { team } from './Products'
+import { team } from '../../components/Products'
 const About = () => {
     return (
         <div>

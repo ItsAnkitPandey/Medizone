@@ -3,7 +3,6 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './components/Home';
 import Footer from './components/Footer';
-import About from './components/About';
 import AllMedicines from './components/AllMedicines';
 import Contact from './components/Contact';
 import Cart from './components/Cart';
@@ -11,21 +10,20 @@ import { useState, useEffect } from 'react'
 import Loader from './components/Loader';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Chatbot from './components/Chatbot';
-import BotButton from './BotButton';
 import Popup from './components/Popup';
 import Checkout from './components/Checkout';
 import Thankyou from './components/Thankyou';
+import About from './pages/About/About';
 
 function App() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [showPopup, setShowPopup] = useState(false); 
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleLogin = () => {
     setLoggedIn(true);
-    localStorage.setItem('loggedIn', 'true'); 
+    localStorage.setItem('loggedIn', 'true');
   };
 
   const handleLogout = () => {
@@ -51,7 +49,7 @@ function App() {
 
     localStorage.setItem('cart', JSON.stringify(cart));   // Adding items to local storage. It can helps in when we refresh page the items will show there as it it.
     // alert("Added to cart");
-    setShowPopup(true); 
+    setShowPopup(true);
   }
 
 
@@ -66,23 +64,57 @@ function App() {
     if (storedLoggedIn === 'true') {
       setLoggedIn(true);
     }
-     // Hide the loader after 3 seconds (3000 milliseconds)
-     const timer = setTimeout(() => {
+    // Hide the loader after 3 seconds (3000 milliseconds)
+    const timer = setTimeout(() => {
       setLoading(false);
     }, 3000);
 
-    // Cleanup the timer when the component unmounts or when loading becomes false
-    return () => clearTimeout(timer);
-  }, []); 
+    // setting custom css for chatbot - starts
+    const updateStyle = ()=>{
+      const dfMessenger = document.querySelector('df-messenger');
+      const shadow = dfMessenger?.shadowRoot;
+      const widgetIcon = shadow?.getElementById("widgetIcon");
+      if (!widgetIcon) return;
+        if(window.innerWidth > 769){
+          console.log(window.innerWidth);
+          widgetIcon.style.bottom = "0";
+        }else{
+          console.log(window.innerWidth + ' for mobile');
+          widgetIcon.style.bottom = "50px";
+        }
+    
+  }
 
- 
+    const interval = setInterval(() => {
+      const dfMessenger = document.querySelector('df-messenger');
+      const shadow = dfMessenger?.shadowRoot;
+      const widgetIcon = shadow?.getElementById("widgetIcon");
+      console.log(widgetIcon);
+      
+      if (widgetIcon) {
+        updateStyle();
+        clearInterval(interval);
+      }
+    }, 100);
+
+    //Reapply on resize
+    window.addEventListener('resize', updateStyle);
+    // setting custom css for chatbot - ends
+    // Cleanup the timer when the component unmounts or when loading becomes false
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+      window.removeEventListener("resize", updateStyle)
+    }
+  }, []);
+
+
 
 
   return (
     <>
       {loading ? <Loader /> :
         <Router>
-        <BotButton />
           <Navbar cart={cart} loggedIn={loggedIn} handleLogout={handleLogout} />
           <Routes>
             <Route exact path="/" element={<Home addToCart={addToCart} loading={loading} />}></Route>
@@ -101,8 +133,7 @@ function App() {
             )}
             <Route exact path="/login" element={<Login onLogin={handleLogin} />}></Route>
             <Route exact path="/signup" element={<Signup />}></Route>
-            <Route exact path="/chatbot" element={<Chatbot />}></Route>
-            <Route exact path="/checkout" element={<Checkout cart={cart}/>}></Route>
+            <Route exact path="/checkout" element={<Checkout cart={cart} />}></Route>
             <Route exact path="/thankyou" element={<Thankyou />}></Route>
 
           </Routes>
