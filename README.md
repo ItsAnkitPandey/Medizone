@@ -4,3 +4,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Live on [Medizone](https://medizonnetlify.app)
 
+# New Version on [New Medizone](https://medzonnetlify.app)
+
