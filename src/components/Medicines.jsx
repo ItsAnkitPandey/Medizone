@@ -7,7 +7,7 @@ const Medicines = ({medicine, addToCart,view}) => {
 
     return (
         <>
-                    <div className={`${view == 'desktop' ? 'med-item' : 'mob-med-item' } jc-center ai-center d-flex  fd-column m-10 `}>
+                    <div className={`${view === 'desktop' ? 'med-item' : 'mob-med-item' } jc-center ai-center d-flex  fd-column m-10 `}>
                         <img src={img} alt="" className='m-5'/>
                         <h2 className='m-5'>{name}</h2>
                         <h4 className='m-5'>&#8377; {price}</h4>

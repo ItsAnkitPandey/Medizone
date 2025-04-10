@@ -32,9 +32,6 @@ const Home = ({ addToCart, loading }) => {
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     )
 }

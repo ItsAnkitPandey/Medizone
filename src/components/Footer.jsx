@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 import { Link } from 'react-router-dom'
-import logo from '../images/mlogo.png'
+import logo from '../images/updatedLogo.png'
 const Footer = () => {
 	return (
 		<div className="footer-wrapper">
@@ -33,7 +33,7 @@ const Footer = () => {
 				</div>
 				<hr />
 				<div className="footer-end">
-					<p>Designed by Anchit Gupta and Ankit Pandey</p>
+					<p>Developed by Ankit Pandey</p>
 				</div>
 			</footer>
 
