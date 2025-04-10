@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 import { Link } from 'react-router-dom'
-import logo from '../images/mlogo.png'
+import logo from '../images/mdlogo.jpg'
 const Footer = () => {
 	return (
 		<div className="footer-wrapper">

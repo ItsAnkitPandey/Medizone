@@ -84,6 +84,7 @@ function App() {
         <Router>
         <BotButton />
           <Navbar cart={cart} loggedIn={loggedIn} handleLogout={handleLogout} />
+          <span className='version2'>New Version Available on &nbsp; <a href="https://medzon.netlify.app">Medzon</a></span>
           <Routes>
             <Route exact path="/" element={<Home addToCart={addToCart} loading={loading} />}></Route>
             <Route exact path="/about" element={<About />}></Route>

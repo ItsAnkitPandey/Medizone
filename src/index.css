@@ -14,3 +14,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.version2{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: large;
+  color: #63b6eb;
+  margin-top: 15px;
+  animation: version2 infinite ease-in-out 3s;
+}
+.version2 a{
+  color: red;
+  text-decoration: underline;
+}
+
+@keyframes version2 {
+  0%{
+    scale: 1.3;
+  }
+
+  50%{
+    scale: 1;
+  }
+  100%{
+    scale: 1.3;
+  }
+  
+
+}
