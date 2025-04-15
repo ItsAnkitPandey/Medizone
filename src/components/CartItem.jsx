@@ -31,15 +31,15 @@ const CartItem = ({ name, img, quantity, price, id, cart, setCart }) => {
   return (
     <>
       <div className="product">
-      <i class="fa-regular fa-trash-can" onClick={handleRemove}></i>
+      <i className="fa-regular fa-trash-can" onClick={handleRemove}></i>
         <img className="cart-img" src={img} alt="medicine" />
         <span className='product_name'>{name}</span>
       </div>
       <div className="price-cart">&#8377;{price}</div>
       <div className="quantity">
-      <i class="fa-solid fa-minus" onClick={handleDecrease}></i> 
+      <i className="fa-solid fa-minus" onClick={handleDecrease}></i> 
         <span>{quantity}</span>
-        <i class="fa-solid fa-plus" onClick={handleIncrease} ></i> 
+        <i className="fa-solid fa-plus" onClick={handleIncrease} ></i> 
       </div>
       <div className="total">
         &#8377;{quantity * price}

@@ -1,9 +1,10 @@
 import React from 'react'
-import '../App.css'
+import './Footer.css'
 import { Link } from 'react-router-dom'
-import logo from '../images/updatedLogo.png'
+import logo from '../../images/updatedLogo.png'
 const Footer = () => {
-	return (
+	return (<>
+		<div className="dummycolor"></div>
 		<div className="footer-wrapper">
 			<footer>
 				<div className="footer">
@@ -38,6 +39,8 @@ const Footer = () => {
 			</footer>
 
 		</div>
+	</>
+
 	)
 }
 

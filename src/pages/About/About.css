@@ -1,0 +1,321 @@
+.about-img {
+    background: url('../../images/image.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: #1e1c1c;
+    font-weight: 500;
+    font-size: 20px;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.702);
+    font-family: 'lobster';
+}
+
+.about-img span {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.127);
+    color: var(--primary-color);
+    font-family: 'Averia Serif Libre';
+    font-weight: 700;
+    font-style: normal;
+}
+
+.our-story {
+    background-color: #23212f;
+    padding: 2% 0;
+    position: relative;
+    min-height: 1px;
+}
+
+.story-container {
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.our-story-header {
+    font-family: 'lobster';
+    color: var(--secondary-color);
+    font-size: 40px;
+    padding: 2% 0;
+    text-align: center;
+}
+
+.our-story-content {
+    text-align: justify;
+    padding: 2% 0;
+    font-size: 18px;
+    font-family: 'Pt sans';
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.our-story-content p {
+    margin-bottom: 30px;
+}
+
+.our-story-content p b {
+    color: var(--secondary-color);
+}
+
+.about-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.team {
+    margin: 20px 20px;
+}
+
+.team-details {
+    display: flex;
+    padding: 5px 5px 25px;
+    margin-bottom: 2em;
+    margin-right: 30px;
+}
+
+.team-img {
+    width: 30%;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.team-img img {
+    height: 270px;
+    width: 270px;
+    border-radius: 500px;
+    margin: 1.4em 0 1em;
+}
+
+.team-details .details {
+    width: 70%;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.personName {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 28px;
+    line-height: 1.2;
+    font-family: 'lobster';
+}
+
+.personRole {
+    margin: 1em 0;
+    color: rgb(178, 178, 178);
+}
+
+.personDetails {
+    font-size: 20px;
+    text-align: left;
+    max-width: 900px;
+}
+
+blockquote {
+    font-size: 1em;
+    padding: 45px 20px 40px 50px;
+    margin-top: 30px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 6px #ccc;
+    text-align: left;
+    position: relative;
+    margin-left: 0;
+    font-weight: bold;
+    font-family: "Averia Serif Libre";
+    font-size: 25px;
+    width: 100%;
+}
+
+blockquote:before {
+    font-family: 'FontAwesome';
+    content: "\201C";
+    position: absolute;
+    font-size: 40px;
+    opacity: 0.25;
+    font-style: normal;
+    top: 28px;
+    left: 13px;
+}
+
+.team-details .details p {
+    margin: 1em 0;
+}
+
+.socialNet {
+    margin-top: 1.2em;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.fa-linkedin {
+    color: #0077b5;
+}
+
+.fa-facebook {
+    color: #0077b5;
+}
+
+.fa-instagram {
+    color: #f56040;
+}
+
+@media only screen and (max-width: 767px) {
+    .about-heading h1{
+        font-size: 25px !important;
+    }
+    .about-img {
+        height: 400px;
+        font-size: 10px !important;
+    }
+
+    .team-details {
+        display: flex;
+        flex-direction: column;
+        padding: 5px 5px 25px;
+        margin-bottom: 2em;
+        align-items: center;
+    }
+
+    .personDetails {
+        text-align: start !important;
+    }
+
+    .team-img img {
+        height: 150px;
+        width: 150px;
+    }
+
+    blockquote {
+
+        box-shadow: 3px 3px 5px 6px #ccc;
+
+        font-size: 20px;
+    }
+
+    blockquote:before {
+
+        font-size: 30px;
+
+        top: 37px;
+        left: 20px;
+    }
+}
+
+
+
+@media only screen and (max-width: 930px) {
+    .about-img {
+        font-size: 15px;
+    }
+
+   
+    .personDetails {
+        text-align: start !important;
+    }
+
+    .team-img img {
+        height: 200px;
+        width: 200px;
+    }
+
+    blockquote {
+        box-shadow: 3px 3px 5px 6px #ccc;
+        font-size: 20px;
+        margin-right: 0;
+    }
+
+    blockquote:before {
+        font-size: 30px;
+        top: 37px;
+        left: 20px;
+    }
+
+
+}
+
+@media only screen and (max-width:1000px) {
+
+    .team-details .details{
+        width: 100%;
+    }
+    .personDetails{
+        height: 200px;
+    }
+    .team-details .details p,
+    .team-details .details h2 {
+        margin: 1em;
+        text-align: center;
+    }
+
+    .personDetails {
+        text-align: start !important;
+        text-wrap: auto !important;
+        font-size: 12px;
+    }
+    .team-img{
+        width: 100%;
+    }
+    .team-img img {
+        height: 200px;
+        width: 200px;
+    }
+
+    .personSlogan {
+        text-align: start !important;
+        text-wrap: auto !important;
+        font-size: 12px;
+    }
+
+    blockquote {
+        box-shadow: 3px 3px 5px 6px #ccc;
+        font-size: 20px;
+    }
+
+    blockquote:before {
+        font-size: 30px;
+        top: 37px;
+        left: 20px;
+        margin-right: 0;
+    }
+
+    .mob-about {
+        display: flex;
+        align-items: stretch;
+        margin: 1em;
+        padding: 1em;
+        overflow: hidden;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        scroll-snap-align: center;
+        scroll-snap-type: x mandatory;
+        white-space: nowrap;
+    }
+
+    .mob-about-card {
+        scroll-behavior: smooth;
+        scroll-snap-align: center;
+        scroll-snap-type: x mandatory;
+        background-color: rgb(243, 243, 243);
+        box-shadow: 3px 3px 5px 6px #ccc;
+        border-radius: 10px;
+        padding: 9px;
+        margin-left: 15px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+}

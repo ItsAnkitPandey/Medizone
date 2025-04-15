@@ -250,48 +250,54 @@ export const images = [
     {
         id: 1,
         name:'Ankit Pandey',
-        role: 'Frontend & Backend',
+        role: 'Co-founder & Full Stack Developer',
         facebook: 'https://facebook.com/pandeyankit2001',
         whatsapp: 'https://wa.me/+916391735294',
         instagram: 'https://www.instagram.com/ankitpandey_401',
-        img: require('../images/ankit.jpeg')
+        img: require('../images/ankit.jpeg'),
+        details: "As a technical backbone of medizone, Ankit has taken charge of both the frontend and backend developent of the platform. With the passion for technology and problem-solving, he ensures that every line of code supports a seamless, secure and scalable experience for users. From implementing the UI/UX to integrating real time features like the chatbot, his focus is to create a medical e-commerce platform that's both user-friendly and powerfull. He is responsible for maintaining the system architechture, database, and overall performance of the site",
+        slogan: "My goal is to make sure every user interaction on Medizone feels smooth and trustworthy - just like talking to a real pharmacist."
     },
     {
         id: 2,
         name:'Adarsh Mishra',
-        role: 'Project Leader',
+        role: 'Co-founder & Pharmaceutical Expert',
         facebook: 'https://facebook.com',
         whatsapp: 'https://wa.me/+918920661951',
         instagram: 'https://www.instagram.com/im._.adarshmishra',
-        img: require('../images/adarssh.jpg')
+        img: require('../images/adarssh.jpg'),
+        details: "With a strong knowledge in pharmateceutical, Adarsh brings essential domain expertise to the Medizone team. He oversees product categorization, verifies medical data, and ensures every listing complies with safety standards and user understanding. His experience in medicine helps shape the chatbot suggetions, product content, and user guidance that make Medizone reliable for patients and customers. ",
+        slogan: "I want medizone to be more than just an online store - it should be a platform people can trust for genuine and informed medical purchases."
     },
     {
         id: 3,
         name:'Shailendra Singh',
-        role: 'Medicine Expert',
+        role: 'Head of Bussiness Development',
         facebook: 'https://facebook.com',
         whatsapp: 'https://wa.me/+919838981288',
         instagram: 'https://www.instagram.com/whimsicalrajput818',
-        img: require('../images/shailendra.jpeg')
-    },
-    {
-        id: 4,
-        name:'Anchit Gupta',
-        role: 'Designer',
-        facebook: 'https://facebook.com',
-        whatsapp: 'https://wa.me/+917307207896',
-        instagram: 'https://www.instagram.com/_x_anshu_01',
-        img: require('../images/anchit.jpeg')
-    },
-    {
-        id: 5,
-        name:'Maneesh Kumar',
-        role: 'Spelling Check',
-        facebook: 'https://facebook.com',
-        whatsapp: 'https://wa.me/+917521069257',
-        instagram: 'https://www.instagram.com',
-        img: require('../images/manish.jpeg')
-    }
+        img: require('../images/shailendra.jpeg'),
+        details: "Shailendra is a connector who helps Medizone grow through strategic partnerships with pharmacies, distrubutors, and healthcare providers. His role identifying bussiness opportunities, onboarding pharmacy partners, and scaling Medizone's presence in the healthcare market. With a knack for communication and clear vision, he plays key role in outreach, branding, and future expansion.",
+        slogan:"We're not just building a website - we're building a brand that bridges pharmacies and people through tech a trust."
+    }, 
+    // {
+    //     id: 4,
+    //     name:'Anchit Gupta',
+    //     role: 'Designer',
+    //     facebook: 'https://facebook.com',
+    //     whatsapp: 'https://wa.me/+917307207896',
+    //     instagram: 'https://www.instagram.com/_x_anshu_01',
+    //     img: require('../images/anchit.jpeg')
+    // },
+    // {
+    //     id: 5,
+    //     name:'Maneesh Kumar',
+    //     role: 'Spelling Check',
+    //     facebook: 'https://facebook.com',
+    //     whatsapp: 'https://wa.me/+917521069257',
+    //     instagram: 'https://www.instagram.com',
+    //     img: require('../images/manish.jpeg')
+    // }
  ]
 
 

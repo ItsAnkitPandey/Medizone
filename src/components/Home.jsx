@@ -1,6 +1,6 @@
 import React from 'react'
 import Medicines from './Medicines'
-import { products } from './Products'
+import { products } from '../utils/Products'
 import ProductCarousel from './ProductCarousel'
 import { Link } from 'react-router-dom'
 import Category from './Category'

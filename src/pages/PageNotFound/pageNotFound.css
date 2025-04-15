@@ -1,0 +1,41 @@
+.pageNotFound{
+    margin-top: 8%;
+    text-align: center;
+}
+
+.pagenotfoundcontainer{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.pagenotfoundcontainer img{
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.pageNotFound h1{
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.pageNotFound p{
+    margin: 0 0 10px;
+}
+
+.pageNotFound p a{
+    color: #428bca;
+}
+
+
+@media (min-width: 768px) {
+    .pagenotfoundcontainer {
+        max-width: 750px;
+    }
+}
+
+

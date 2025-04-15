@@ -1,0 +1,102 @@
+/* ---------------------Footer ----------------------- */
+.dummycolor{
+  height: 50px;
+  background-color: var(--primary-color);
+}
+.footer-wrapper {
+    width: 100%;
+    display: block;
+    margin-top: 30px;
+    background-color: white;
+    color: var(--primary-color);
+    padding: 40px 0px;
+   
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .footer-wrapper footer {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    display: block;
+  }
+  
+  .col-50 {
+    width: 50%;
+    padding: 10px 10px;
+    display: inline-block;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .col-25,
+  .col-26 {
+    width: 23%;
+    display: inline-block;
+    text-align: left;
+  }
+  
+  .col-50 .logo-text {
+    font-size: 23px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+    letter-spacing: 5px;
+  }
+  
+  .col-50 .sub-text {
+    font-size: 16px;
+    margin-top: 5px;
+    color: rgb(50, 50, 50);
+  }
+  
+  .col-25 ul,
+  .col-26 ul {
+    padding: 0px 0px;
+    margin: 0px 0px;
+  }
+  
+  .col-25 ul li,
+  .col-26 ul li {
+    list-style-type: none;
+    margin-bottom: 15px;
+  }
+  
+  .col-25 ul li a,
+  .col-26 ul li a {
+    text-decoration: none;
+    color: rgb(50, 50, 50);
+    font-size: 16px;
+  }
+  
+  .footer-wrapper hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .footer-end {
+    text-align: center;
+  }
+  
+
+  /* small screen styling */
+  @media screen and (max-width: 768px) {
+    .footer-wrapper{
+        margin-bottom: 40px;
+      }
+      .footer {
+        align-items: center;
+      }
+    
+      .col-26 {
+        display: none;
+      }
+  } 

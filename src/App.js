@@ -1,19 +1,22 @@
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './components/Home';
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import AllMedicines from './components/AllMedicines';
 import Contact from './components/Contact';
 import Cart from './components/Cart';
 import { useState, useEffect } from 'react'
-import Loader from './components/Loader';
-import Login from './components/Login';
-import Signup from './components/Signup';
+import Loader from './components/Loader/Loader';
+// import Login from './components/Login';
 import Popup from './components/Popup';
 import Checkout from './components/Checkout';
 import Thankyou from './components/Thankyou';
 import About from './pages/About/About';
+import Login from './pages/Login/Login';
+import Signup from './pages/Signup/Signup';
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -67,7 +70,7 @@ function App() {
     // Hide the loader after 3 seconds (3000 milliseconds)
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2500);
 
     // setting custom css for chatbot - starts
     const updateStyle = ()=>{
@@ -76,10 +79,8 @@ function App() {
       const widgetIcon = shadow?.getElementById("widgetIcon");
       if (!widgetIcon) return;
         if(window.innerWidth > 769){
-          console.log(window.innerWidth);
           widgetIcon.style.bottom = "0";
         }else{
-          console.log(window.innerWidth + ' for mobile');
           widgetIcon.style.bottom = "50px";
         }
     
@@ -121,21 +122,13 @@ function App() {
             <Route exact path="/about" element={<About />}></Route>
             <Route exact path="/allmedicines" element={<AllMedicines addToCart={addToCart} />}></Route>
             <Route exact path="/contact" element={<Contact />}></Route>
-            {loggedIn ? ( // Only render the Cart component if the user is logged in
-              <Route exact path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
-            ) : (
-              <Route exact path="/cart" element={
-                <div>
-                  <h2 style={{ color: 'red' }}>Please Login to access the Cart</h2>
-                  <Login onLogin={handleLogin} />
-                </div>
-              } /> // Show login prompt otherwise
-            )}
+            <Route exact path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
             <Route exact path="/login" element={<Login onLogin={handleLogin} />}></Route>
             <Route exact path="/signup" element={<Signup />}></Route>
             <Route exact path="/checkout" element={<Checkout cart={cart} />}></Route>
             <Route exact path="/thankyou" element={<Thankyou />}></Route>
-
+            <Route exact path="/forgotPassword" element={<ForgotPassword />}></Route>
+            <Route  path="*" element={<PageNotFound/>}></Route>
           </Routes>
           <Footer />
           {showPopup && <Popup setShowPopup={setShowPopup} cart={cart} setCart={setCart} />}

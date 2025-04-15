@@ -1,5 +1,5 @@
 import React from 'react'
-import { category } from './Products'
+import { category } from '../utils/Products'
 
 const Category = () => {
     return (

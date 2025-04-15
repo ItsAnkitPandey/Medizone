@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { images } from './Products';
+import { images } from '../utils/Products';
 
 
 const ProductCarousel = () => {

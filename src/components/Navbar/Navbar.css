@@ -1,0 +1,241 @@
+/* navabr */
+
+.navheader {
+    box-shadow: 0px 1px 4px #92a1b026;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1;
+}
+
+.container {
+    margin: 0 20px;
+    height: calc(var(--header-height) + 1rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+
+}
+
+.logo2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    width: 200px;
+    height: 50px;
+    padding: 5px;
+    margin-left: 25px;
+}
+
+.logo2 img {
+    width: 200px;
+    height: 50px;
+    padding: 5px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.nav>a {
+    margin-left: 8px;
+    margin-right: 8px;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    padding: 5px;
+    color: black;
+    text-decoration: none;
+}
+
+.nav>a:hover {
+    /* box-shadow: 3px 5px 30px var(--primary-color); */
+    background-color: var(--primary-color);
+    color: white;
+    padding: 7px;
+
+}
+
+.nav>.active {
+    /* box-shadow: 3px 5px 30px var(--primary-color); */
+    background-color: var(--primary-color);
+    color: white;
+    padding: 7px;
+}
+
+.item-count {
+    background-color: rgb(216, 61, 61);
+    padding: 0 4px;
+    position: relative;
+    top: -11px;
+    right: 7px;
+    border-radius: 70px;
+    color: white;
+}
+
+.hide-for-desktop {
+    display: none;
+}
+
+
+
+/* Active styles for mobile menu */
+.container.active .nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.container.active .nav a {
+    display: block;
+    margin: 5px;
+}
+
+
+/* Unused in latest medizon update - starts */
+/* Hamburger menu */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    width: 30px;
+    height: 3px;
+    background-color: black;
+    margin: 3px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.container.active .hamburger .bar:nth-child(1) {
+    transform: translateY(6px) rotate(-45deg);
+}
+
+.container.active .hamburger .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.container.active .hamburger .bar:nth-child(3) {
+    transform: translateY(-6px) rotate(45deg);
+}
+
+/* Unused in latest medizon update - ends*/
+
+
+@media screen and (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+
+    .container {
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 5px;
+    }
+
+    .container.active {
+        top: 10px;
+        position: fixed;
+        right: 10px;
+        width: 300px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+        background-color: white;
+    }
+
+    .hide-for-desktop {
+        display: flex;
+    }
+
+    .nav-mob {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .nav-mob>a {
+        margin-left: 8px;
+        margin-right: 8px;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 16px;
+        padding: 5px;
+        color: var(--primary-color);
+    }
+
+    .nav-mob>a:hover {
+        box-shadow: 3px 5px 30px rgb(14, 230, 194);
+        background-color: rgb(14, 230, 194);
+        color: white;
+        padding: 7px;
+    }
+
+    .nav-mob>.active {
+        box-shadow: 3px 5px 30px rgb(14, 230, 194);
+        background-color: rgb(14, 230, 194);
+        color: white;
+        padding: 7px;
+    }
+
+    .mobile-nav {
+        position: fixed;
+        top: 80;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .mobile-nav nav {
+        width: 100%;
+        padding-block: 2%;
+        background-color: whitesmoke;
+        align-items: center;
+        height: 45px;
+    }
+
+    .mobile-nav nav a {
+        text-decoration: none;
+    }
+
+
+    .mobile-nav nav i {
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+    }
+
+    .mobile-nav nav .active {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 7px;
+        border-radius: 10px;
+    }
+
+    .logo img {
+        margin-left: 0;
+    }
+
+    .hide-for-mobile{
+        display: none;
+      }
+
+}
