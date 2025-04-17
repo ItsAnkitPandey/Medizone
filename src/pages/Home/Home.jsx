@@ -1,9 +1,9 @@
 import React from 'react'
-import Medicines from './Medicines'
-import { products } from '../utils/Products'
-import ProductCarousel from './ProductCarousel'
+import Medicines from '../../components/Medicines'
+import { products } from '../../utils/Products'
+import ProductCarousel from '../../components/Carousel/ProductCarousel'
 import { Link } from 'react-router-dom'
-import Category from './Category'
+import Category from '../../components/Category'
 
 const Home = ({ addToCart, loading }) => {
 

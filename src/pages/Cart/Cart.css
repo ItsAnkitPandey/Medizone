@@ -1,0 +1,116 @@
+.product-container {
+    max-width: 650px;
+    justify-content: space-around;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: rgb(10, 235, 168);
+    color: white;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+    box-shadow: 0px 6px 10px 2px rgba(96, 96, 13, 0.5);
+    border-radius: 5px;
+  }
+  
+  .product_name {
+    margin-left: 8px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+  }
+  
+  .product-container i {
+    font-size: 26px;
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .product-header {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 4px solid lightgray;
+    margin: 0 auto;
+  }
+  
+  .product-title {
+    width: 45%;
+    margin-left: 15px;
+  }
+  
+  .price-cart {
+    width: 15%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantity {
+    width: 30%;
+    display: flex;
+    align-items: center;
+  
+  }
+  
+  .total {
+    width: 10%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .product {
+    width: 45%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid lightgreen;
+  }
+  
+  .products {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+  }
+  
+  .products img {
+    width: 75px;
+    height: 90px;
+    border-radius: 10px;
+  }
+  
+  .grandTotalContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px 30px;
+    color: whitesmoke;
+    font-size: 26px;
+    margin: 10px;
+  
+  }
+  
+  .grandTotalTitle {
+    width: 30%;
+  
+  }
+  
+  .grandTotal {
+    width: 10%;
+  }
+  
+  .proceed {
+    background-color: rgb(28, 50, 50);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    padding: 10px;
+    margin-top: 12px;
+    color: #fff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 25px;
+  }
+  

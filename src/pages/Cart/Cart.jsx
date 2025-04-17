@@ -1,8 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import CartItem from './CartItem'
-import TotalPrice from './TotalPrice'
+import CartItem from '../../components/CartItem'
+import TotalPrice from '../../components/TotalPrice'
 import { useNavigate } from 'react-router-dom'
+import './Cart.css'
 
 const Cart = ({ cart, setCart }) => {
     const navigate = useNavigate();

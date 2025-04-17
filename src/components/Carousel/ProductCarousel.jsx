@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { images } from '../utils/Products';
+import { images } from '../../utils/Products';
+import './ProductCarousel.css'
 
 
 const ProductCarousel = () => {

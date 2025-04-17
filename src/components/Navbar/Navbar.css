@@ -92,7 +92,7 @@
 }
 
 
-
+/* Unused in latest medizon update - starts */
 /* Active styles for mobile menu */
 .container.active .nav {
     display: flex;
@@ -105,7 +105,7 @@
 }
 
 
-/* Unused in latest medizon update - starts */
+
 /* Hamburger menu */
 .hamburger {
     display: none;
@@ -146,18 +146,6 @@
         margin: 0 5px;
     }
 
-    .container.active {
-        top: 10px;
-        position: fixed;
-        right: 10px;
-        width: 300px;
-        padding: 30px;
-        display: flex;
-        flex-direction: column;
-        height: 400px;
-        background-color: white;
-    }
-
     .hide-for-desktop {
         display: flex;
     }
@@ -186,13 +174,6 @@
         padding: 7px;
     }
 
-    .nav-mob>.active {
-        box-shadow: 3px 5px 30px rgb(14, 230, 194);
-        background-color: rgb(14, 230, 194);
-        color: white;
-        padding: 7px;
-    }
-
     .mobile-nav {
         position: fixed;
         top: 80;
@@ -206,7 +187,6 @@
         padding-block: 2%;
         background-color: whitesmoke;
         align-items: center;
-        height: 45px;
     }
 
     .mobile-nav nav a {
@@ -228,6 +208,10 @@
         color: white;
         padding: 7px;
         border-radius: 10px;
+    }
+
+    nav .active i{
+        color: white;
     }
 
     .logo img {

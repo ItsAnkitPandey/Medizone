@@ -1,11 +1,10 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './components/Home';
 import Footer from './components/Footer/Footer';
 import AllMedicines from './components/AllMedicines';
-import Contact from './components/Contact';
-import Cart from './components/Cart';
+import Contact from './pages/Contact/Contact';
+import Cart from './pages/Cart/Cart';
 import { useState, useEffect } from 'react'
 import Loader from './components/Loader/Loader';
 // import Login from './components/Login';
@@ -17,6 +16,7 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
+import Home from './pages/Home/Home';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -128,6 +128,7 @@ function App() {
             <Route exact path="/checkout" element={<Checkout cart={cart} />}></Route>
             <Route exact path="/thankyou" element={<Thankyou />}></Route>
             <Route exact path="/forgotPassword" element={<ForgotPassword />}></Route>
+            <Route exact path="/abc" element={<Cart cart={cart} setCart={setCart} />} />
             <Route  path="*" element={<PageNotFound/>}></Route>
           </Routes>
           <Footer />

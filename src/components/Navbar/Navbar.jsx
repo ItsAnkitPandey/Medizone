@@ -8,15 +8,15 @@ import { motion } from 'framer-motion';
 const Navbar = ({ cart, loggedIn, handleLogout }) => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   let [selected, setSelected] = useState(0);
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
 
   // calculate total items in cart
   const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
 
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({
-      top:0,
+      top: 0,
       behavior: "instant",
     })
 
@@ -25,16 +25,16 @@ const Navbar = ({ cart, loggedIn, handleLogout }) => {
     let dummyColor = root?.querySelector('.dummycolor');
     let navBg = root?.querySelector('.navheader');
     console.log(footer);
-    if (pathname === "/login" || pathname === '/signup' || pathname==='/forgotPassword'){
-        if (footer) footer.style.display = "none";
-        if (dummyColor) dummyColor.style.display = "none";
-        if(navBg) navBg.style.backgroundColor = "transparent";
+    if (pathname === "/login" || pathname === '/signup' || pathname === '/forgotPassword') {
+      if (footer) footer.style.display = "none";
+      if (dummyColor) dummyColor.style.display = "none";
+      if (navBg) navBg.style.backgroundColor = "transparent";
     }
     // cleanup showing footer again when leaving the page 
-    return ()=>{
-        if (footer) footer.style.display = "";
-        if (dummyColor) dummyColor.style.display = "";
-        if(navBg) navBg.style.backgroundColor = "white";
+    return () => {
+      if (footer) footer.style.display = "";
+      if (dummyColor) dummyColor.style.display = "";
+      if (navBg) navBg.style.backgroundColor = "white";
     }
   }, [pathname])
 
@@ -68,24 +68,24 @@ const Navbar = ({ cart, loggedIn, handleLogout }) => {
       <div className="mobile-nav hide-for-desktop">
         <nav className=' d-flex jc-spacearound'>
 
-          <Link to={"/"}>
-            <i className={`${selected === 0 ? 'active' : ''} fa-solid fa-home fa-lg`} onClick={() => { setSelected(0) }} />
+          <Link to={"/"} className={`${selected === 0 ? 'active' : ''}`} onClick={() => { setSelected(0) }}>
+            <i className= "fa-solid fa-home fa-lg" />
           </Link>
 
-          <Link to={"/allmedicines"}>
-          <i className={`${selected === 1 ? 'active' : ''} fa-solid fa-capsules fa-lg`} onClick={() => { setSelected(1) }} />
+          <Link to={"/allmedicines"} className={`${selected === 1 ? 'active' : ''}`} onClick={() => { setSelected(1) }}>
+            <i className='fa-solid fa-capsules fa-lg'onClick={() => { setSelected(1) }} />
           </Link>
 
-          <Link to={"/login"}>
-          <i className={`${selected === 2 ? 'active' : ''} fa-solid fa-user fa-lg`} onClick={() => { setSelected(2) }} />
+          <Link to={"/login"} className={`${selected === 2 ? 'active' : ''}`} onClick={() => { setSelected(2) }}>
+            <i className='fa-solid fa-user fa-lg' onClick={() => { setSelected(2) }} />
           </Link>
 
-          <Link to={"/about"}>
-          <i className={`${selected === 3 ? 'active' : ''} fa-solid fa-address-card fa-lg`} onClick={() => { setSelected(3) }} />
+          <Link to={"/about"} className={`${selected === 3 ? 'active' : ''}`} onClick={() => { setSelected(3) }}>
+            <i className='fa-solid fa-address-card fa-lg' onClick={() => { setSelected(3) }} />
           </Link>
 
-          <Link to={"/contact"}>
-          <i className={`${selected === 4 ? 'active' : ''} fa-solid fa-headset fa-lg`} onClick={() => { setSelected(4) }} />
+          <Link to={"/contact"} className={`${selected === 4 ? 'active' : ''}`} onClick={() => { setSelected(4) }}>
+            <i className='fa-solid fa-headset fa-lg' />
           </Link>
 
         </nav>
