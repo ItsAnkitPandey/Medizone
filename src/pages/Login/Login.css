@@ -53,13 +53,13 @@
 }
 
 .social_area div:nth-child(1){
-    width: 50%;
+    width: 100%;
     margin-right: 10px;
 }
-.social_area div:nth-child(2){
+/* .social_area div:nth-child(2){
     width: 50%;
     margin-left: 10px;
-}
+} */
 
 .googleLogin button, .facebookLogin button{
     font-size: 16px;

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Contact.css'
+import Button from '../../components/Button/Button'
 
 const Contact = () => {
     return (
@@ -37,7 +38,7 @@ const Contact = () => {
                         <input type="text" name="name" placeholder='Enter Your Name' id="" />
                         <input type="email" name="email" placeholder='Enter Your Email' id="" />
                         <textarea name="message" id="" cols="20" rows="8" placeholder='Type your message here'></textarea>
-                        <button type='submit'>Send Mail</button>
+                        <Button name={'Send Message'} type={'submit'}/>
                     </form>
                 </div>
             </div>

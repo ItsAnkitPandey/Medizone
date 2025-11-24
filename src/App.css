@@ -107,38 +107,14 @@ p {
   margin: 0;
 }
 
-.med-item>button {
-  background-color: rgb(79, 79, 224);
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.med-item>button:hover {
-  background-color: blue;
-}
 
 .all-meds {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  margin-bottom: 20px;
 }
 
-.all-meds>a {
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  background-color: #09acd9;
-  color: white;
-  text-decoration: none;
-  width: 100px;
-  text-align: center;
-}
 
 
 
@@ -630,4 +606,9 @@ form>h2 {
     height: 400px;
   }
 
+}
+
+input:focus {
+  border: 2px solid var(--secondary-color); /* Adds a blue border */
+  outline: none; /* Removes the default browser outline */
 }

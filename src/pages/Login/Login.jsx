@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import googleLogo from '../../images/google-social-icon.svg';
-import facebookLogo from '../../images/fb-social-icon.svg';
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
@@ -15,17 +14,21 @@ const Login = () => {
     const [passErr, setPassErr] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
+    let eyeColor = useRef(null);
+    let passwordInput = useRef(null);
+    let emailInput = useRef(null);
+
+
 
     const loginPasswordShowHide = () => {
         setShowPassword(!showPassword);
-        let eyeColor = document.querySelector('.hide_pswd_icon');
-        let passwordInput = document.getElementById('passwordField');
-        const isPassword = passwordInput.type === 'password';
-        passwordInput.type = isPassword ? 'text' : 'password';
+
+        const isPassword = passwordInput.current.type === 'password';
+        passwordInput.current.type = isPassword ? 'text' : 'password';
         if (showPassword) {
-            eyeColor.style.color = 'Gray';
+            eyeColor.current.style.color = 'Gray';
         } else {
-            eyeColor.style.color = '#2e7d32';
+            eyeColor.current.style.color = '#2e7d32';
         }
     }
 
@@ -33,11 +36,13 @@ const Login = () => {
         if (email === '') {
             setEmailErr(true);
             setPassErr(false);
+            emailInput.current.focus();
             return;
         }
         else if (password === '') {
             setEmailErr(false);
             setPassErr(true);
+            passwordInput.current.focus();
             return;
         } else {
             setEmailErr(false);
@@ -48,7 +53,7 @@ const Login = () => {
             }
             setLoading(true);
             axios
-                .post(`${process.env.REACT_APP_API_KEY}/user/login`, userdata)
+                .post('https://medizone-backend.onrender.com/user/login', userdata)
                 .then(() => {
                     setLoading(false);
                     enqueueSnackbar('Logged in Successfully.', { variant: 'success' });
@@ -81,14 +86,7 @@ const Login = () => {
                                         </button>
                                     </a>
                                 </div>
-                                <div>
-                                    <a href="/" className='facebookLogin'>
-                                        <button>
-                                            Facebook
-                                            <img src={facebookLogo} alt="Facebook" className="login-social-icons" />
-                                        </button>
-                                    </a>
-                                </div>
+
                             </div>
                             <div className="social_login_division">
                                 <hr className="social_login_division_hr" />
@@ -103,6 +101,8 @@ const Login = () => {
                                     placeholder="Email address"
                                     maxLength="100"
                                     onChange={(e) => setEmail(e.target.value)}
+                                    ref={emailInput}
+                                    onClick={ () => emailInput.current.focus()}
                                 />
 
                             </div>
@@ -115,8 +115,9 @@ const Login = () => {
                                     placeholder="Password"
                                     maxLength="100"
                                     onChange={(e) => setPassword(e.target.value)}
+                                    ref={passwordInput}
                                 />
-                                <i className={`fa-solid ${showPassword ? 'fa-eye' : 'fa-eye-slash'} hide_pswd_icon`} onClick={loginPasswordShowHide}></i>
+                                <i className={`fa-solid ${showPassword ? 'fa-eye' : 'fa-eye-slash'} hide_pswd_icon`} onClick={loginPasswordShowHide} ref={eyeColor}></i>
 
                             </div>
                             <span style={{ color: 'red' }}>{passErr ? 'Please enter password.' : ''}</span>

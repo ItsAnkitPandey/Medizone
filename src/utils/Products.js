@@ -73,7 +73,7 @@ export const products = [
     },
     {
         id: 10,
-        name:'Corex Cough Syrup',
+        name:'Corex Syrup',
         price: 121,
         quantity: 1,
         img: require('../images/corex.jpg'),

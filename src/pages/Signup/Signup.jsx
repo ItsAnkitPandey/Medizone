@@ -60,7 +60,7 @@ const Signup = () => {
             };
             setLoading(true);
             axios
-                .post(`{process.env.REACT_APP_API_KEY}/user/signup`, userData)
+                .post('https://medizone-backend.onrender.com/user/signup', userData)
                 .then(() => {
                     setLoading(false);
                     enqueueSnackbar('User Registered Successfully.', { variant: 'success' });

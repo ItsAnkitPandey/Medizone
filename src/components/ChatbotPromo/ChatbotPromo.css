@@ -1,0 +1,53 @@
+/* Chatbot Promotion Section */
+.chatbot-promo {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+.promo-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+    align-items: center;
+    margin: 40px;
+
+}
+
+.promo-text h2 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.promo-text p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.promo-features {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.promo-image {
+    text-align: center;
+}
+
+.promo-image i {
+    color: var(--primary-color);
+    opacity: 0.3;
+}

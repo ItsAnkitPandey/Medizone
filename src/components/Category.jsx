@@ -1,5 +1,6 @@
 import React from 'react'
 import { category } from '../utils/Products'
+import Button from './Button/Button'
 
 const Category = () => {
     return (
@@ -15,7 +16,7 @@ const Category = () => {
                             <img src={e.img} alt="" className='m-5' />
                             <h2 className='m-5'>{e.name}</h2>
                             <h4 className='m-5'>Products: {e.itemCount}</h4>
-                            <button className='m-5 p-10 '>Explore</button>
+                           <Button name={'Explore'}/>
                         </div>
                     )
                 })}

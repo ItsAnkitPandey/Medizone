@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button/Button';
 // import medicineContext from '../context/medicines/medicineContext';
 
 const Medicines = ({medicine, addToCart,view}) => {
@@ -11,7 +12,7 @@ const Medicines = ({medicine, addToCart,view}) => {
                         <img src={img} alt="" className='m-5'/>
                         <h2 className='m-5'>{name}</h2>
                         <h4 className='m-5'>&#8377; {price}</h4>
-                        <button className='m-5 p-10 ' onClick={()=> {addToCart(medicine)}} >Add to cart</button>
+                       <Button name={'Add to cart'} onClick={() => addToCart(medicine)} />
                     </div>
                 
         </>
