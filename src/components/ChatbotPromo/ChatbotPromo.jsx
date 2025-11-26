@@ -1,6 +1,16 @@
 import React from 'react'
 import './ChatbotPromo.css'
 const ChatbotPromo = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  useEffect(()=>{
+    const handleSize = ()=>{
+      setIsMobile(window.innerWidth < 768);
+    }
+    window.addEventListener('resize', handleSize);
+    return ()=>{
+      window.removeEventListener('resize', handleSize);
+    }
+  },[]);
   return (
     <>
       <section className="chatbot-promo">
@@ -25,7 +35,7 @@ const ChatbotPromo = () => {
                             </div>
                         </div>
                         <div className="promo-image">
-                            <i className="fa-solid fa-comments fa-8x"></i>
+                            <i className={`fa-solid fa-comments ${isMobile ? 'fa-4x' : 'fa-8x'}`}></i>
                         </div>
                     </div>
                 </div>
