@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import './ChatbotPromo.css'
 const ChatbotPromo = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
