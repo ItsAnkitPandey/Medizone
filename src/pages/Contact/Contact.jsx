@@ -1,6 +1,6 @@
 import React from 'react'
 import './Contact.css'
-import Button from '../../components/Button/Button'
+import Button from '../../components/common/Button/Button'
 
 const Contact = () => {
     return (

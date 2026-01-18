@@ -1,14 +1,16 @@
 import React from 'react'
-import Medicines from '../../components/Medicines'
+import Medicines from '../../components/product/Medicines'
 import { products } from '../../utils/Products'
-import ProductCarousel from '../../components/Carousel/ProductCarousel'
-import Category from '../../components/Category'
-import './Hone.css'
-import Services from '../../components/Services/Services'
-import HealthTips from '../../components/HealthTipsSection/HealthTips'
-import Button from '../../components/Button/Button.jsx'
-import Stats from '../../components/Stats/Stats.jsx'
-import ChatbotPromo from '../../components/ChatbotPromo/ChatbotPromo.jsx'
+import ProductCarousel from '../../components/product/Carousel/ProductCarousel'
+import Category from '../../components/product/Category'
+import './Home.css'
+import Services from '../../components/sections/Services/Services'
+import HealthTips from '../../components/sections/HealthTipsSection/HealthTips'
+import Button from '../../components/common/Button/Button.jsx'
+import { Link } from 'react-router-dom'
+import Stats from '../../components/sections/Stats/Stats.jsx'
+import ChatbotPromo from '../../components/chatbot/ChatbotPromo/ChatbotPromo.jsx'
+import MainFeatures from '../../components/sections/MainFeatures/MainFeatures.jsx'
 
 const Home = ({ addToCart, loading }) => {
     return (
@@ -16,6 +18,7 @@ const Home = ({ addToCart, loading }) => {
             <div>
                 <ProductCarousel />
             </div>
+            <MainFeatures />
             <Category />
             <Services/>
 
@@ -35,7 +38,7 @@ const Home = ({ addToCart, loading }) => {
                     })}
                 </div>
                 <div className='all-meds'>
-                    <Button name={'View More'} onClick={() => window.location.href = '/allmedicines'} />
+                    <Link className='m-5 p-10 common-btn' to='/allmedicines'>View All</Link>
                 </div>
             </div>
 
