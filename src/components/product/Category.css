@@ -1,0 +1,143 @@
+.main-cat-section {
+  padding: 20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.cat-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.cat-heading h2 {
+  margin-bottom: 0px;
+}
+
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.cat-item {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+
+}
+
+.cat-item:hover::before {
+  transform: scaleX(1);
+}
+
+.cat-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(46, 125, 50, 0.2);
+}
+
+.cat-item>img {
+  height: 150px;
+  width: 150px;
+  border-radius: 5px 10px;
+  object-fit: cover;
+}
+
+.cat-item h2 {
+  font-size: 1rem;
+  margin: 0px;
+  padding: 0px;
+}
+
+.cat-item h4 {
+   margin: 0px;
+  padding: 0px;
+  font-weight: 400;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .hide-for-desktop {
+    display: flex;
+  }
+
+  .hide-for-mobile {
+    display: none;
+  }
+
+  .mob-categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1em;
+    padding: 1em;
+    overflow: hidden;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-align: center;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+  }
+
+  .mob-cat-item {
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+    scroll-behavior: smooth;
+    scroll-snap-align: center;
+    scroll-snap-type: x mandatory;
+    width: 99%;
+    border-radius: 10px;
+    padding: 9px;
+    margin-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .mob-cat-item>img {
+    height: 150px;
+    width: 150px;
+    border-radius: 5px 10px;
+  }
+
+  .mob-cat-item h2 {
+  font-size: 1rem;
+  margin: 0px;
+}
+
+.mob-cat-item h4 {
+   margin: 0px;
+  font-weight: 400;
+}
+
+  .mob-cat-item>button {
+    background-color: rgb(79, 79, 224);
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .mob-cat-item>button:hover {
+    background-color: blue;
+  }
+
+}
