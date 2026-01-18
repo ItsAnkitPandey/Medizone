@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import CartItem from '../../components/cart/CartItem'
 import TotalPrice from '../../components/cart/TotalPrice'
 import { useNavigate } from 'react-router-dom'
-import Spinner from '../../components/common/Spinner/Spinner'
 import './Cart.css'
 
 const Cart = ({ cart, setCart }) => {

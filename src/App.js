@@ -7,7 +7,7 @@ import Loader from './components/common/Loader/Loader';
 import ErrorBoundary from './components/common/ErrorBoundary/ErrorBoundary';
 import ProtectedRoute from './Auth/ProtectedRoute';
 import { initializeChatbotStyles } from './utils/chatbotStyles';
-import { getFromStorage, setToStorage, removeFromStorage } from './utils/storage';
+import { getFromStorage, setToStorage } from './utils/storage';
 import { APP_CONFIG } from './config/app.config';
 import { useAuth } from './contexts/AuthContext';
 
@@ -27,7 +27,7 @@ const Popup = lazy(() => import('./components/common/Popup'));
 
 // Constants
 const STORAGE_KEYS = APP_CONFIG.storageKeys;
-const LOADER_TIMEOUT = APP_CONFIG.loaderTimeout;
+// const LOADER_TIMEOUT = APP_CONFIG.loaderTimeout;
 
 function App() {
   const [cart, setCart] = useState([]);

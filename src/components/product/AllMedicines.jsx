@@ -36,7 +36,7 @@ const AllMedicines = ({ addToCart }) => {
                                     <td>
                                         <img 
                                             src={medicine.img} 
-                                            alt={`${medicine.name} product image`} 
+                                            alt={`${medicine.name}`} 
                                             loading="lazy"
                                         />
                                     </td>

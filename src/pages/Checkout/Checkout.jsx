@@ -34,7 +34,11 @@ const Checkout = ({ cart }) => {
   const [paymentOption, setPaymentOption] = useState('');
 
   // Check form completion and update active step
-  const checkFormProgress = () => {
+
+
+  // Update progress when form data changes
+  useEffect(() => {
+     const checkFormProgress = () => {
     const hasPersonalInfo = formData.fname && formData.lname;
     const hasAddress = formData.selection !== 'select' && formData.houseadd && formData.city && formData.state && formData.postcode;
     const hasContact = formData.phone && formData.email;
@@ -47,10 +51,7 @@ const Checkout = ({ cart }) => {
       setActiveStep(1);
     }
   };
-
-  // Update progress when form data changes
-  useEffect(() => {
-    checkFormProgress();
+  checkFormProgress();
   }, [formData, paymentOption]);
 
   const handleSubmit = (event) => {
