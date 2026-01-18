@@ -1,141 +1,142 @@
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Footer from './components/Footer/Footer';
-import AllMedicines from './components/AllMedicines';
-import Contact from './pages/Contact/Contact';
-import Cart from './pages/Cart/Cart';
-import { useState, useEffect } from 'react'
-import Loader from './components/Loader/Loader';
-// import Login from './components/Login';
-import Popup from './components/Popup';
-import Checkout from './components/Checkout';
-import Thankyou from './components/Thankyou';
-import About from './pages/About/About';
-import Login from './pages/Login/Login';
-import Signup from './pages/Signup/Signup';
-import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
-import PageNotFound from './pages/PageNotFound/PageNotFound';
-import Home from './pages/Home/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState, useEffect, lazy, Suspense } from 'react';
+import Navbar from './components/layout/Navbar/Navbar';
+import Footer from './components/layout/Footer/Footer';
+import Loader from './components/common/Loader/Loader';
+import ErrorBoundary from './components/common/ErrorBoundary/ErrorBoundary';
+import ProtectedRoute from './Auth/ProtectedRoute';
+import { initializeChatbotStyles } from './utils/chatbotStyles';
+import { getFromStorage, setToStorage, removeFromStorage } from './utils/storage';
+import { APP_CONFIG } from './config/app.config';
+import { useAuth } from './contexts/AuthContext';
+
+// Lazy load page components for better performance
+const Home = lazy(() => import('./pages/Home/Home'));
+const About = lazy(() => import('./pages/About/About'));
+const AllMedicines = lazy(() => import('./components/product/AllMedicines'));
+const Contact = lazy(() => import('./pages/Contact/Contact'));
+const Cart = lazy(() => import('./pages/Cart/Cart'));
+const Checkout = lazy(() => import('./pages/Checkout/Checkout'));
+const Thankyou = lazy(() => import('./pages/Thankyou/Thankyou'));
+const Login = lazy(() => import('./pages/Login/Login'));
+const Signup = lazy(() => import('./pages/Signup/Signup'));
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword/ForgotPassword'));
+const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
+const Popup = lazy(() => import('./components/common/Popup'));
+
+// Constants
+const STORAGE_KEYS = APP_CONFIG.storageKeys;
+const LOADER_TIMEOUT = APP_CONFIG.loaderTimeout;
 
 function App() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
-  const handleLogin = () => {
-    setLoggedIn(true);
-    localStorage.setItem('loggedIn', 'true');
-  };
+  // Authentication handlers removed - now handled by AuthContext
 
-  const handleLogout = () => {
-    setLoggedIn(false);
-    localStorage.removeItem('loggedIn'); // Remove the login status from local storage
-  };
-
-
+  // Cart management
   const addToCart = (data) => {
-    const existingItem = cart.find((item) => item.id === data.id);
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === data.id);
+      let updatedCart;
 
-    if (existingItem) {
-      // If the item exists, update the quantity
-      setCart((prevCart) =>
-        prevCart.map((item) =>
+      if (existingItem) {
+        updatedCart = prevCart.map((item) =>
           item.id === data.id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
-    } else {
-      // If the item is not in the cart, add it with quantity 1
-      setCart((prevCart) => [...prevCart, { ...data, quantity: 1 }]);
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));   // Adding items to local storage. It can helps in when we refresh page the items will show there as it it.
-    // alert("Added to cart");
-    setShowPopup(true);
-  }
-
-
-  useEffect(() => {
-    // Retrieve the cart items from local storage
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
-    }
-    // Retrieve the login status from local storage
-    const storedLoggedIn = localStorage.getItem('loggedIn');
-    if (storedLoggedIn === 'true') {
-      setLoggedIn(true);
-    }
-    // Hide the loader after 3 seconds (3000 milliseconds)
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2500);
-
-    // setting custom css for chatbot - starts
-    const updateStyle = ()=>{
-      const dfMessenger = document.querySelector('df-messenger');
-      const shadow = dfMessenger?.shadowRoot;
-      const widgetIcon = shadow?.getElementById("widgetIcon");
-      if (!widgetIcon) return;
-        if(window.innerWidth > 769){
-          widgetIcon.style.bottom = "0";
-        }else{
-          widgetIcon.style.bottom = "50px";
-        }
-    
-  }
-
-    const interval = setInterval(() => {
-      const dfMessenger = document.querySelector('df-messenger');
-      const shadow = dfMessenger?.shadowRoot;
-      const widgetIcon = shadow?.getElementById("widgetIcon");
-      console.log(widgetIcon);
-      
-      if (widgetIcon) {
-        updateStyle();
-        clearInterval(interval);
+        );
+      } else {
+        updatedCart = [...prevCart, { ...data, quantity: 1 }];
       }
-    }, 100);
 
-    //Reapply on resize
-    window.addEventListener('resize', updateStyle);
-    // setting custom css for chatbot - ends
-    // Cleanup the timer when the component unmounts or when loading becomes false
-    return () => {
-      clearTimeout(timer);
-      clearInterval(interval);
-      window.removeEventListener("resize", updateStyle)
+      // Update localStorage with the new cart state
+      setToStorage(STORAGE_KEYS.cart, updatedCart);
+      return updatedCart;
+    });
+
+    setShowPopup(true);
+  };
+
+  // Initialize app on mount
+  useEffect(() => {
+    // Restore cart from localStorage
+    const storedCart = getFromStorage(STORAGE_KEYS.cart);
+    if (storedCart && Array.isArray(storedCart)) {
+      setCart(storedCart);
     }
+
+    // Initialize chatbot styles
+    const cleanupChatbot = initializeChatbotStyles();
+
+    // Hide loader immediately after initialization
+    // No artificial delay needed - let React Suspense handle lazy loading
+    setLoading(false);
+
+    // Cleanup
+    return () => {
+      if (cleanupChatbot) cleanupChatbot();
+    };
   }, []);
 
+  // Sync cart to localStorage when it changes
+  useEffect(() => {
+    if (cart.length > 0) {
+      setToStorage(STORAGE_KEYS.cart, cart);
+    }
+  }, [cart]);
 
 
 
   return (
-    <>
-      {loading ? <Loader /> :
+    <ErrorBoundary>
+      {loading ? (
+        <Loader />
+      ) : (
         <Router>
-          <Navbar cart={cart} loggedIn={loggedIn} handleLogout={handleLogout} />
-          <Routes>
-            <Route exact path="/" element={<Home addToCart={addToCart} loading={loading} />}></Route>
-            <Route exact path="/about" element={<About />}></Route>
-            <Route exact path="/allmedicines" element={<AllMedicines addToCart={addToCart} />}></Route>
-            <Route exact path="/contact" element={<Contact />}></Route>
-            <Route exact path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
-            <Route exact path="/login" element={<Login onLogin={handleLogin} />}></Route>
-            <Route exact path="/signup" element={<Signup />}></Route>
-            <Route exact path="/checkout" element={<Checkout cart={cart} />}></Route>
-            <Route exact path="/thankyou" element={<Thankyou />}></Route>
-            <Route exact path="/forgotPassword" element={<ForgotPassword />}></Route>
-            <Route exact path="/abc" element={<Cart cart={cart} setCart={setCart} />} />
-            <Route  path="*" element={<PageNotFound/>}></Route>
-          </Routes>
+          <Navbar cart={cart} loggedIn={isAuthenticated} handleLogout={logout} />
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<Home addToCart={addToCart} loading={loading} />} />
+              <Route path="/about" element={<About />} />
+              <Route
+                path="/allmedicines"
+                element={
+                  <ProtectedRoute>
+                    <AllMedicines addToCart={addToCart} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/contact" element={<Contact />} />
+              <Route
+                path="/cart"
+                element={
+                  <ProtectedRoute>
+                    <Cart cart={cart} setCart={setCart} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route
+                path="/checkout"
+                element={
+                  <ProtectedRoute>
+                    <Checkout cart={cart} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/thankyou" element={<Thankyou />} />
+              <Route path="/forgotPassword" element={<ForgotPassword />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </Suspense>
           <Footer />
           {showPopup && <Popup setShowPopup={setShowPopup} cart={cart} setCart={setCart} />}
         </Router>
-      }
-    </>
+      )}
+    </ErrorBoundary>
   );
 }
 

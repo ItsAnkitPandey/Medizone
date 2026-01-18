@@ -60,8 +60,8 @@ html {
 /* ----------------------------Medicines------------------------- */
 
 .med-container {
-  background-color: rgb(255, 255, 255);
-  margin-top: 20px;
+  background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+  padding: 60px 20px;
 }
 
 .med-heading {
@@ -69,37 +69,145 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0;
+}
+
+.med-heading h2 {
+  margin-bottom: 10px;
 }
 
 .line {
-  width: 40px;
+  width: 60px;
   height: 4px;
-  background-color: red;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .medicines {
   flex-wrap: wrap;
   margin-right: 5px;
+  justify-content: center;
+  flex-grow: initial;
 }
 
 .med-item {
   margin: 10px;
-  background-color: rgb(243, 243, 243);
-  box-shadow: 3px 3px 5px 6px #ccc;
-  border-radius: 10px;
-  padding: 9px;
+  background: white;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 20px;
   margin-left: 15px;
   margin-top: 20px;
   margin-bottom: 20px;
-
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  max-width: 280px;
 }
 
-.med-item>img {
-  height: 200px;
-  width: 200px;
-  border-radius: 5px 10px;
+.med-item:hover {
+  transform: translateY(-10px);
+}
+
+.med-image-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.med-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(238, 90, 111, 0.3);
+}
+
+.med-item>img,
+.med-image-wrapper>img {
+  height: 120px;
+  width: 120px;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.med-item:hover .med-image-wrapper>img {
+  transform: scale(1.1);
+}
+
+.med-details {
+  width: 100%;
+  text-align: center;
+}
+
+.med-name {
+  color: #2c3e50;
+  margin: 8px 0;
+}
+
+.med-rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.med-rating i {
+  color: #ffa500;
+  font-size: 0.9rem;
+}
+
+.med-rating .fa-regular {
+  color: #ddd;
+}
+
+.rating-count {
+  margin-left: 8px;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.med-price-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.med-price {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.med-discount {
+  background: rgba(46, 125, 50, 0.1);
+  color: var(--primary-color);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.med-description {
+  color: #7f8c8d;
+  font-size: 0.9rem;
 }
 
 .med-item>h4,
@@ -112,7 +220,6 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 
@@ -608,7 +715,7 @@ form>h2 {
 
 }
 
-input:focus {
-  border: 2px solid var(--secondary-color); /* Adds a blue border */
-  outline: none; /* Removes the default browser outline */
+input:focus, textarea:focus, select:focus{
+  border: 2px solid var(--secondary-color) !important; /* Adds a blue border */
+  outline: none !important; /* Removes the default browser outline */
 }
