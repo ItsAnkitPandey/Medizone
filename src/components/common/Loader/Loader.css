@@ -1,0 +1,59 @@
+/* ===========Loader css================= */
+/* Loader Styles */
+.loader-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #1fbeca;
+    z-index: 101;
+    position: relative;
+  }
+  
+  .loader {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: rotate 1.5s linear infinite;
+  }
+  
+  .loader div {
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 3px;
+    animation: bounce 1.5s infinite alternate;
+  }
+  
+  /* Additional Styling for Greeting Text */
+  .greeting-text {
+    color: #fff;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  to {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}

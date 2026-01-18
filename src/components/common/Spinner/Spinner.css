@@ -1,0 +1,10 @@
+.spinner_main{
+	
+	background-color: rgba(240, 248, 255, 0.122);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.loading{
+	height: 50px;
+}
