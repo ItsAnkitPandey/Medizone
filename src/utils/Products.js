@@ -258,17 +258,17 @@ export const images = [
         details: "As a technical backbone of medizone, Ankit has taken charge of both the frontend and backend developent of the platform. With the passion for technology and problem-solving, he ensures that every line of code supports a seamless, secure and scalable experience for users. From implementing the UI/UX to integrating real time features like the chatbot, his focus is to create a medical e-commerce platform that's both user-friendly and powerfull. He is responsible for maintaining the system architechture, database, and overall performance of the site",
         slogan: "My goal is to make sure every user interaction on Medizone feels smooth and trustworthy - just like talking to a real pharmacist."
     },
-    {
-        id: 2,
-        name:'Adarsh Mishra',
-        role: 'Co-founder & Pharmaceutical Expert',
-        facebook: 'https://facebook.com',
-        whatsapp: 'https://wa.me/+918920661951',
-        instagram: 'https://www.instagram.com/im._.adarshmishra',
-        img: require('../images/adarssh.jpg'),
-        details: "With a strong knowledge in pharmateceutical, Adarsh brings essential domain expertise to the Medizone team. He oversees product categorization, verifies medical data, and ensures every listing complies with safety standards and user understanding. His experience in medicine helps shape the chatbot suggetions, product content, and user guidance that make Medizone reliable for patients and customers. ",
-        slogan: "I want medizone to be more than just an online store - it should be a platform people can trust for genuine and informed medical purchases."
-    },
+    // {
+    //     id: 2,
+    //     name:'Adarsh Mishra',
+    //     role: 'Co-founder & Pharmaceutical Expert',
+    //     facebook: 'https://facebook.com',
+    //     whatsapp: 'https://wa.me/+918920661951',
+    //     instagram: 'https://www.instagram.com/im._.adarshmishra',
+    //     img: require('../images/adarssh.jpg'),
+    //     details: "With a strong knowledge in pharmateceutical, Adarsh brings essential domain expertise to the Medizone team. He oversees product categorization, verifies medical data, and ensures every listing complies with safety standards and user understanding. His experience in medicine helps shape the chatbot suggetions, product content, and user guidance that make Medizone reliable for patients and customers. ",
+    //     slogan: "I want medizone to be more than just an online store - it should be a platform people can trust for genuine and informed medical purchases."
+    // },
     {
         id: 3,
         name:'Shailendra Singh',
