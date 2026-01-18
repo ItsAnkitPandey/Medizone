@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import '../Login/Login.css'
+import React, { useState } from 'react';
+import '../Login/Login.css';
 import googleLogo from '../../images/google-social-icon.svg';
-import facebookLogo from '../../images/fb-social-icon.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import axios from 'axios';
-
+import { authAPI } from '../../services/api';
+import { validateSignupForm, sanitizeInput, getPasswordStrength } from '../../utils/validation';
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -13,13 +12,10 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [emailErr, setEmailErr] = useState(false);
-    const [passErr, setPassErr] = useState(false);
-    const [nameErr, setNameErr] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [passwordStrength, setPasswordStrength] = useState(null);
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
-
-
 
     const signupPasswordShowHide = () => {
         setShowPassword(!showPassword);
@@ -32,47 +28,67 @@ const Signup = () => {
         } else {
             eyeColor.style.color = '#2e7d32';
         }
-    }
+    };
 
-    const register = () => {
-        if(name === ''){
-            setNameErr(true);
-            setEmailErr(false);
-            setPassErr(false);
-            return;
-        }
-        else if (email === '') {
-            setEmailErr(true);
-            setPassErr(false);
-            setNameErr(false);
-            return;
-        }
-        else if (password === '') {
-            setEmailErr(false);
-            setPassErr(true);
-            setNameErr(false);
-            return;
+    const handlePasswordChange = (e) => {
+        const newPassword = e.target.value;
+        setPassword(newPassword);
+        
+        // Update password strength indicator
+        if (newPassword) {
+            setPasswordStrength(getPasswordStrength(newPassword));
         } else {
-            const userData = {
-                email,
-                name,
-                password
-            };
-            setLoading(true);
-            axios
-                .post('https://medizone-backend.onrender.com/user/signup', userData)
-                .then(() => {
-                    setLoading(false);
-                    enqueueSnackbar('User Registered Successfully.', { variant: 'success' });
-                    navigate('/login');
-                })
-                .catch((error) => {
-                    setLoading(false);
-                    console.log(error);
-                    enqueueSnackbar(error.response.data.error, { variant: 'error' })
-                })
+            setPasswordStrength(null);
         }
-    }
+    };
+
+    const register = async (e) => {
+        e?.preventDefault();
+
+        // Clear previous errors
+        setErrors({});
+
+        // Sanitize inputs
+        const sanitizedName = sanitizeInput(name);
+        const sanitizedEmail = sanitizeInput(email);
+        const sanitizedPassword = sanitizeInput(password);
+
+        // Validate form
+        const validation = validateSignupForm(sanitizedName, sanitizedEmail, sanitizedPassword);
+        if (!validation.isValid) {
+            setErrors(validation.errors);
+            return;
+        }
+
+        const userData = {
+            name: sanitizedName,
+            email: sanitizedEmail,
+            password: sanitizedPassword,
+        };
+
+        setLoading(true);
+
+        try {
+            await authAPI.signup(userData);
+            enqueueSnackbar('Account created successfully! Please login.', { variant: 'success' });
+            navigate('/login');
+        } catch (error) {
+            console.error('Signup error:', error);
+            const errorMessage = 
+                error.response?.data?.error || 
+                error.response?.data?.message ||
+                'Registration failed. Please try again.';
+            enqueueSnackbar(errorMessage, { variant: 'error' });
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            register();
+        }
+    };
 
     return (
         <>
@@ -85,19 +101,9 @@ const Signup = () => {
                             </div>
                             <div className="social_area">
                                 <div>
-                                    <a href="/" className='googleLogin'>
-                                        <button>
-                                            Google
-                                            <img src={googleLogo} alt="Google" className="login-social-icons" />
-                                        </button>
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href="/" className='facebookLogin'>
-                                        <button>
-                                            Facebook
-                                            <img src={facebookLogo} alt="Facebook" className="login-social-icons" />
-                                        </button>
+                                    <a href='/' className="googleLogin" disabled>
+                                        Google
+                                        <img src={googleLogo} alt="Google" className="login-social-icons" />
                                     </a>
                                 </div>
                             </div>
@@ -106,63 +112,104 @@ const Signup = () => {
                                 <span style={{ color: "#B4B4B4" }}>or</span>
                                 <hr className="social_login_division_hr" />
                             </div>
-                            <div className="login-name">
-                                <input
-                                    type="text"
-                                    name="username"
-                                    className="login_name"
-                                    placeholder="Enter Your Name"
-                                    onChange={(e) => setName(e.target.value)}
-                                    maxlength="100" />
-                            </div>
-                            <span style={{color:'red'}}>{nameErr ? 'Please enter name.' : ''}</span>
-                            <div className="login-email">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    className="login_email"
-                                    placeholder="Email address"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    maxlength="100" />
-                            </div>
-                            <span style={{color:'red'}}>{emailErr ? 'Please enter email.' : ''}</span>
-                            <div className="login-pwd">
-                                <input type="password"
-                                    name="password"
-                                    className="login_password"
-                                    id='passwordField'
-                                    placeholder="Password"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    maxlength="100" />
-                                <i className={`fa-solid ${showPassword ? 'fa-eye' : 'fa-eye-slash'} hide_pswd_icon`} onClick={signupPasswordShowHide}></i>
+                            <form onSubmit={register}>
+                                <div className="login-name">
+                                    <input
+                                        type="text"
+                                        name="username"
+                                        className="login_name"
+                                        placeholder="Enter Your Name"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        onKeyPress={handleKeyPress}
+                                        maxLength="100"
+                                        autoComplete="name"
+                                        disabled={loading}
+                                    />
+                                </div>
+                                <span style={{ color: 'red', fontSize: '14px' }}>
+                                    {errors.name || ''}
+                                </span>
 
-                            </div>
-                            <span style={{color:'red'}}>{passErr ? 'Please enter password.' : ''}</span>
-                            <div className="login_button_block">
-                                {!loading ?
-                                    <button className="login_button" onClick={register}>Sign up</button>
-                                    :
-                                    <button disabled className="login_button"><i class="fa-solid fa-circle-notch fa-spin"></i></button>
+                                <div className="login-email">
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        className="login_email"
+                                        placeholder="Email address"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        onKeyPress={handleKeyPress}
+                                        maxLength="100"
+                                        autoComplete="email"
+                                        disabled={loading}
+                                    />
+                                </div>
+                                <span style={{ color: 'red', fontSize: '14px' }}>
+                                    {errors.email || ''}
+                                </span>
 
-                                }
+                                <div className="login-pwd">
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        className="login_password"
+                                        id="passwordField"
+                                        placeholder="Password"
+                                        value={password}
+                                        onChange={handlePasswordChange}
+                                        onKeyPress={handleKeyPress}
+                                        maxLength="100"
+                                        autoComplete="new-password"
+                                        disabled={loading}
+                                    />
+                                    <i
+                                        className={`fa-solid ${showPassword ? 'fa-eye' : 'fa-eye-slash'} hide_pswd_icon`}
+                                        onClick={signupPasswordShowHide}
+                                    />
+                                </div>
+                                <span style={{ color: 'red', fontSize: '14px' }}>
+                                    {errors.password || ''}
+                                </span>
+                                
+                                {passwordStrength && (
+                                    <div style={{ marginTop: '8px', fontSize: '13px' }}>
+                                        <span>Password strength: </span>
+                                        <span style={{ color: passwordStrength.color, fontWeight: 'bold' }}>
+                                            {passwordStrength.text}
+                                        </span>
+                                    </div>
+                                )}
 
-                            </div>
+                                <div className="login_button_block">
+                                    <button
+                                        type="submit"
+                                        className="login_button"
+                                        disabled={loading}
+                                    >
+                                        {loading ? (
+                                            <i className="fa-solid fa-circle-notch fa-spin" />
+                                        ) : (
+                                            'Sign up'
+                                        )}
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                         <div className="newregister_content">
-
-                            <h2>Already have an account? <Link to="/login">
-                                <span>Log In</span>
-                            </Link></h2>
-
+                            <h2>
+                                Already have an account?{' '}
+                                <Link to="/login">
+                                    <span>Log In</span>
+                                </Link>
+                            </h2>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-            <div className="ai-gradient"></div>
+            <div className="ai-gradient" />
         </>
-    )
-}
+    );
+};
 
-export default Signup
+export default Signup;
