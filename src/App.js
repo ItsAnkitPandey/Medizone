@@ -22,6 +22,8 @@ const Thankyou = lazy(() => import('./pages/Thankyou/Thankyou'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const Signup = lazy(() => import('./pages/Signup/Signup'));
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword/ForgotPassword'));
+const Profile = lazy(() => import('./pages/Profile/Profile'));
+const EditProfile = lazy(() => import('./pages/Profile/EditProfile'));
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Popup = lazy(() => import('./components/common/Popup'));
 
@@ -119,6 +121,22 @@ function App() {
               />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile/edit"
+                element={
+                  <ProtectedRoute>
+                    <EditProfile />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/checkout"
                 element={
