@@ -1,12 +1,46 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './ForgotPassword.css'
+import { sanitizeInput, validateEmail } from '../../utils/validation'
+import { useRef } from 'react'
+import { useSnackbar } from 'notistack'
+import { authAPI } from '../../services/api'
+
 
 const ForgotPassword = () => {
-    let [isLinkSend, setIsLinkSend] = useState(false);
-    useState(() => {
-        setIsLinkSend(false);
-    }, [])
+    const [isLinkSend, setIsLinkSend] = useState(false);
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+    let emailRef = useRef(null);
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const sanitizedEmail = sanitizeInput(email);
+
+        const validatedEmail = validateEmail(sanitizedEmail);
+        if (!validatedEmail) {
+            emailRef.current.focus();
+            enqueueSnackbar('Please enter a valid email address.', { variant: 'error' });
+            return;
+        }
+        
+        setLoading(true);
+        try {
+            const response = await authAPI.forgotPassword(sanitizedEmail);
+            enqueueSnackbar(response.data.message || 'Password reset link sent to your email.', { variant: 'success' });
+            setIsLinkSend(true);
+        } catch (error) {
+            console.error('Error sending password reset link:', error);
+            enqueueSnackbar(
+                error.response?.data?.message || 'Failed to send password reset link.',
+                { variant: 'error' }
+            );
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <>
             <div className="fpwd_wrapper">
@@ -30,18 +64,38 @@ const ForgotPassword = () => {
                                             <h1>Forgot Password?</h1>
                                             <h2>No worried! Just tell the email address that you have registered with us.</h2>
                                         </div>
-                                        <div class="fpwd-email">
-                                            <input
-                                                type="text"
-                                                name="email"
-                                                class="fpwd_email"
-                                                placeholder="Email address"
-                                                maxlength="100" />
-                                            <span className='email_icon'></span>
-                                        </div>
-                                        <div class="fpwd_button_block">
-                                            <button class="fpwd_button">Submit</button>
-                                        </div>
+                                        <form onSubmit={handleSubmit}>
+                                            <div className="fpwd-email">
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    className="fpwd_email"
+                                                    value={email}
+                                                    ref={emailRef}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    required
+                                                    placeholder="Email address"
+                                                    maxLength="100"
+                                                    disabled={loading}
+                                                />
+                                                <span className='email_icon'></span>
+                                            </div>
+                                            <div className="fpwd_button_block">
+                                                <button 
+                                                    type="submit" 
+                                                    className="fpwd_button"
+                                                    disabled={loading}
+                                                >
+                                                    {loading ? (
+                                                        <>
+                                                            <i className="fa-solid fa-spinner fa-spin"></i> Sending...
+                                                        </>
+                                                    ) : (
+                                                        'Submit'
+                                                    )}
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 )
 

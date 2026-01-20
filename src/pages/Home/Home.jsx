@@ -1,6 +1,5 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import Medicines from '../../components/product/Medicines'
-import { products } from '../../utils/Products'
 import ProductCarousel from '../../components/product/Carousel/ProductCarousel'
 import Category from '../../components/product/Category'
 import './Home.css'
@@ -11,8 +10,39 @@ import { Link } from 'react-router-dom'
 import Stats from '../../components/sections/Stats/Stats.jsx'
 import ChatbotPromo from '../../components/chatbot/ChatbotPromo/ChatbotPromo.jsx'
 import MainFeatures from '../../components/sections/MainFeatures/MainFeatures.jsx'
+import { useSnackbar } from 'notistack';
+import { medicineAPI } from '../../services/api';
 
 const Home = ({ addToCart, loading }) => {
+        const [medicines, setMedicines] = useState([]);
+        const { enqueueSnackbar } = useSnackbar();
+    
+        useEffect(() => {
+            const fetchMedicines = async () => {
+                try {
+                    const response = await medicineAPI.getAllMedicines();
+                    if (response.data.success) {
+                        // Map backend data to frontend format
+                        const mappedMedicines = response.data.medicines.map(med => ({
+                            id: med._id,
+                            name: med.title,
+                            img: med.imgUrl,
+                            price: med.price,
+                            description: med.description,
+                            stock: med.stockQuantity,
+                            quantity: 1
+                        }));
+                        setMedicines(mappedMedicines);
+                    }
+                } catch (error) {
+                    console.error('Error fetching medicines:', error);
+                    enqueueSnackbar('Failed to load medicines', { variant: 'error' });
+                }
+            };
+    
+            fetchMedicines();
+        }, [enqueueSnackbar]);
+
     return (
         <div>
             <div>
@@ -28,12 +58,12 @@ const Home = ({ addToCart, loading }) => {
                     <div className='line'></div>
                 </div>
                 <div className="medicines d-flex jc-center hide-for-mobile">
-                    {products.slice(0, 10).map((medicine) => {
+                    {medicines.slice(0, 10).map((medicine) => {
                         return <Medicines key={medicine.id} {...medicine} medicine={medicine} addToCart={addToCart} view='desktop' />
                     })}
                 </div>
                 <div className="mob-medicines d-flex jc-center hide-for-desktop">
-                    {products.slice(0, 10).map((medicine) => {
+                    {medicines.slice(0, 10).map((medicine) => {
                         return <Medicines key={medicine.id} {...medicine} medicine={medicine} addToCart={addToCart} view='mobile' />
                     })}
                 </div>
