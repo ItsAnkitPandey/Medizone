@@ -3,9 +3,11 @@ import { motion } from 'framer-motion'
 import CartItem from '../../components/cart/CartItem'
 import TotalPrice from '../../components/cart/TotalPrice'
 import { useNavigate } from 'react-router-dom'
+import { useCart } from '../../contexts/CartContext'
 import './Cart.css'
 
-const Cart = ({ cart, setCart }) => {
+const Cart = () => {
+    const { cart } = useCart();
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
     const [error, setError] = useState(null);
@@ -68,7 +70,7 @@ const Cart = ({ cart, setCart }) => {
                             </div>
                             <div className="products" role="list" aria-label="Cart items">
                                 {cart.map((medicine) => {
-                                    return <CartItem key={medicine.id} {...medicine} cart={cart} setCart={setCart} />
+                                    return <CartItem key={medicine.id} {...medicine} />
                                 })}
                             </div>
                         </div>

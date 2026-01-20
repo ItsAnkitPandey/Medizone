@@ -3,15 +3,15 @@ import logo from '../../../images/updatedLogo.png'
 import './Navbar.css'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion';
-const Navbar = ({ cart, loggedIn, handleLogout }) => {
+import { useCart } from '../../../contexts/CartContext';
+
+const Navbar = ({ loggedIn, handleLogout }) => {
   const storedUser = JSON.parse(localStorage.getItem('medizone_auth'))?.user;
+  const { cartCount } = useCart();
   let [selected, setSelected] = useState(0);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const { pathname } = useLocation();
   const profileMenuRef = useRef(null);
-
-  // calculate total items in cart
-  const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
 
   // Close profile menu when clicking outside
   useEffect(() => {
@@ -102,7 +102,7 @@ const Navbar = ({ cart, loggedIn, handleLogout }) => {
           )}
           
           <Link to="/contact" className={`${selected === 4 ? 'active' : ''}`} onClick={() => setSelected(4)}>Contact Us</Link>
-          <Link className={`${selected === 5 ? 'active' : ''}`} to={loggedIn ? '/cart' : '/login'} onClick={() => setSelected(5)}> <i className="fa-solid fa-cart-shopping"></i><span className='item-count'>{totalItemsInCart}</span></Link>
+          <Link className={`${selected === 5 ? 'active' : ''}`} to={loggedIn ? '/cart' : '/login'} onClick={() => setSelected(5)}> <i className="fa-solid fa-cart-shopping"></i><span className='item-count'>{cartCount}</span></Link>
         </div>
       </div>
 
@@ -113,7 +113,7 @@ const Navbar = ({ cart, loggedIn, handleLogout }) => {
 
         </div>
         <div className='nav-mob ' >
-          <Link className={`${selected === 5 ? 'active' : ''}`} to={loggedIn ? '/cart' : '/login'} onClick={() => setSelected(5)}> <i className="fa-solid fa-cart-shopping"></i><span className='item-count'>{totalItemsInCart}</span></Link>
+          <Link className={`${selected === 5 ? 'active' : ''}`} to={loggedIn ? '/cart' : '/login'} onClick={() => setSelected(5)}> <i className="fa-solid fa-cart-shopping"></i><span className='item-count'>{cartCount}</span></Link>
         </div>
       </div>
       <div className="mobile-nav hide-for-desktop">
