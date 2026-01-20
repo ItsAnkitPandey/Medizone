@@ -1,21 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './styles/GlobalLoader.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { SnackbarProvider } from 'notistack';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
+import { LoadingProvider } from './contexts/LoadingContext';
+import { setLoadingHandlers } from './services/api';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-    <React.StrictMode>
+
+// AppWrapper to set loading handlers
+const AppWrapper = () => {
+  return (
+    <LoadingProvider>
+      <LoadingHandlerSetter />
       <AuthProvider>
         <CartProvider>
           <App />
         </CartProvider>
       </AuthProvider>
+    </LoadingProvider>
+  );
+};
+
+// Component to set loading handlers from context
+const LoadingHandlerSetter = () => {
+  const { showLoading, hideLoading } = require('./contexts/LoadingContext').useLoading();
+  
+  React.useEffect(() => {
+    setLoadingHandlers(showLoading, hideLoading);
+  }, [showLoading, hideLoading]);
+  
+  return null;
+};
+
+root.render(
+  <SnackbarProvider maxSnack={3} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+    <React.StrictMode>
+      <AppWrapper />
     </React.StrictMode>
   </SnackbarProvider>
 );
