@@ -85,4 +85,26 @@ export const orderAPI = {
   getOrderById: (id) => api.get(`/orders/${id}`),
 };
 
+// Cart API calls
+export const cartAPI = {
+  getCart: () => api.get('/cart'),
+  addToCart: (medicineId, quantity = 1) => api.post('/cart/add', { medicineId, quantity }),
+  updateCart: (itemId, quantity) => api.put('/cart/update', { itemId, quantity }),
+  removeFromCart: (itemId) => api.delete(`/cart/remove/${itemId}`),
+};
+
+// Medicine API calls
+export const medicineAPI = {
+  getAllMedicines: (params) => api.get('/medicines', { params }),
+  getMedicineById: (id) => api.get(`/medicines/${id}`),
+  searchMedicines: (search) => api.get('/medicines', { params: { search } }),
+};
+
+// Category API calls
+export const categoryAPI = {
+  getAllCategories: () => api.get('/categories'),
+  getCategoryById: (id) => api.get(`/categories/${id}`),
+  getMedicinesByCategory: (id, params) => api.get(`/categories/${id}/medicines`, { params }),
+};
+
 export default api;
