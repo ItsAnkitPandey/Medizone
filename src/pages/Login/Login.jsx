@@ -39,10 +39,8 @@ const Login = () => {
     const handleLogin = async (e) => {
         e?.preventDefault();
 
-        // Clear previous errors
         setErrors({});
 
-        // Sanitize inputs
         const sanitizedEmail = sanitizeInput(email);
         const sanitizedPassword = sanitizeInput(password);
 

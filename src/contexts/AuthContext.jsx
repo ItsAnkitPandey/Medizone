@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
     setIsAuthenticated(false);
     removeFromStorage(APP_CONFIG.storageKeys.auth);
-    removeFromStorage(APP_CONFIG.storageKeys.cart); // Clear cart on logout
+    removeFromStorage(APP_CONFIG.storageKeys.cart); 
   };
 
   // Update user data

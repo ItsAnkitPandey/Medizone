@@ -15,9 +15,23 @@ const api = axios.create({
   },
 });
 
-// Request interceptor - Add auth token to requests
+// Global loading handlers (will be set by LoadingProvider)
+let showLoadingHandler = null;
+let hideLoadingHandler = null;
+
+export const setLoadingHandlers = (show, hide) => {
+  showLoadingHandler = show;
+  hideLoadingHandler = hide;
+};
+
+// Request interceptor - Add auth token and show loading
 api.interceptors.request.use(
   (config) => {
+    // Show global loader
+    if (showLoadingHandler) {
+      showLoadingHandler();
+    }
+
     const authData = localStorage.getItem(APP_CONFIG.storageKeys.auth);
     if (authData) {
       try {
@@ -32,14 +46,29 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    // Hide loader on request error
+    if (hideLoadingHandler) {
+      hideLoadingHandler();
+    }
     return Promise.reject(error);
   }
 );
 
-// Response interceptor - Handle errors globally
+// Response interceptor - Handle errors globally and hide loading
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    // Hide global loader on success
+    if (hideLoadingHandler) {
+      hideLoadingHandler();
+    }
+    return response;
+  },
   (error) => {
+    // Hide global loader on error
+    if (hideLoadingHandler) {
+      hideLoadingHandler();
+    }
+
     // Handle 401 Unauthorized - Token expired or invalid
     if (error.response?.status === 401) {
       localStorage.removeItem(APP_CONFIG.storageKeys.auth);
