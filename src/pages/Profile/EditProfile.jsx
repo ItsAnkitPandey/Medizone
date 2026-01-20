@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { useAuth } from '../../contexts/AuthContext';
@@ -26,16 +26,7 @@ const EditProfile = () => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/login');
-      return;
-    }
-
-    fetchProfile();
-  }, [isAuthenticated, navigate]);
-
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async () => {
     try {
       setLoading(true);
       const response = await userAPI.getProfile();
@@ -49,7 +40,16 @@ const EditProfile = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [enqueueSnackbar]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+
+    fetchProfile();
+  }, [isAuthenticated, navigate, fetchProfile]);
 
   const validateForm = () => {
     const newErrors = {};

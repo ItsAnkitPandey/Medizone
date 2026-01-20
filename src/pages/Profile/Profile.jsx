@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { useAuth } from '../../contexts/AuthContext';
@@ -9,20 +9,11 @@ import './Profile.css';
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { user, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/login');
-      return;
-    }
-
-    fetchProfile();
-  }, [isAuthenticated, navigate]);
-
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async () => {
     try {
       setLoading(true);
       const response = await userAPI.getProfile();
@@ -36,7 +27,16 @@ const Profile = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [enqueueSnackbar]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+
+    fetchProfile();
+  }, [isAuthenticated, navigate, fetchProfile]);
 
   if (loading) {
     return <Loader />;
