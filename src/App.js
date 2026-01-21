@@ -1,12 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import Navbar from './components/layout/Navbar/Navbar';
 import Footer from './components/layout/Footer/Footer';
-import Loader from './components/common/Loader/Loader';
 import ErrorBoundary from './components/common/ErrorBoundary/ErrorBoundary';
 import ProtectedRoute from './Auth/ProtectedRoute';
-import { initializeChatbotStyles } from './utils/chatbotStyles';
 import { useAuth } from './contexts/AuthContext';
 import { useCart } from './contexts/CartContext';
 
@@ -27,24 +25,10 @@ const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Popup = lazy(() => import('./components/common/Popup'));
 
 function App() {
-  const [loading, setLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const { isAuthenticated, logout } = useAuth();
   const { cart, addToCart } = useCart();
 
-  // Initialize app on mount
-  useEffect(() => {
-    // Initialize chatbot styles
-    const cleanupChatbot = initializeChatbotStyles();
-
-    // Hide loader immediately after initialization
-    setLoading(false);
-
-    // Cleanup
-    return () => {
-      if (cleanupChatbot) cleanupChatbot();
-    };
-  }, []);
 
   // Show popup when item is added to cart
   const handleAddToCart = async (data) => {
@@ -58,14 +42,11 @@ function App() {
 
   return (
     <ErrorBoundary>
-      {loading ? (
-        <Loader />
-      ) : (
         <Router>
           <Navbar loggedIn={isAuthenticated} handleLogout={logout} />
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={<div className="suspense-loader">Loading...</div>}>
             <Routes>
-              <Route path="/" element={<Home addToCart={handleAddToCart} loading={loading} />} />
+              <Route path="/" element={<Home addToCart={handleAddToCart}/>} />
               <Route path="/about" element={<About />} />
               <Route
                 path="/allmedicines"
@@ -118,7 +99,6 @@ function App() {
           <Footer />
           {showPopup && <Popup setShowPopup={setShowPopup} />}
         </Router>
-      )}
     </ErrorBoundary>
   );
 }
