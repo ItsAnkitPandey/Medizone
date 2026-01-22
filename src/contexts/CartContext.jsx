@@ -42,15 +42,18 @@ export const CartProvider = ({ children }) => {
       setLoading(true);
       const response = await cartAPI.getCart();
       if (response.data.success) {
-        const mappedCart = response.data.cartItems.map(item => ({
-          id: item._id,
-          medicineId: item.medicine._id,
-          name: item.medicine.title,
-          img: item.medicine.imgUrl,
-          price: item.medicine.price,
-          quantity: item.quantity,
-          stock: item.medicine.stockQuantity
-        }));
+        // Filter out items with missing medicine data and map the rest
+        const mappedCart = response.data.cartItems
+          .filter(item => item.medicine) // Only include items with valid medicine data
+          .map(item => ({
+            id: item._id,
+            medicineId: item.medicine._id,
+            name: item.medicine.title,
+            img: item.medicine.imgUrl,
+            price: item.medicine.price,
+            quantity: item.quantity,
+            stock: item.medicine.stockQuantity
+          }));
         setCart(mappedCart);
       }
     } catch (error) {

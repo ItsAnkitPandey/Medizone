@@ -13,7 +13,7 @@ import MainFeatures from '../../components/sections/MainFeatures/MainFeatures.js
 import { useSnackbar } from 'notistack';
 import { medicineAPI } from '../../services/api';
 
-const Home = ({ addToCart, loading }) => {
+const Home = ({ addToCart }) => {
         const [medicines, setMedicines] = useState([]);
         const { enqueueSnackbar } = useSnackbar();
     
