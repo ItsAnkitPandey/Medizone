@@ -52,7 +52,7 @@ const Category = () => {
                 {categories.slice(0, 4).map((e) => {
                     return (
                         <div key={e._id} className="cat-item jc-center ai-center d-flex  fd-column m-10">
-                            <img src={e.img || 'https://via.placeholder.com/150?text=Category'} alt={e.name} className='m-5' />
+                            <img src={e.imgUrl } alt={e.name} className='m-5' />
                             <h2 className='m-5'>{e.name}</h2>
                             <h4 className='m-5'>Products: {e.medicineCount || 0}</h4>
                            <Button name={'Explore'}/>
@@ -64,7 +64,7 @@ const Category = () => {
                 {categories.slice(0, 4).map((e) => {
                     return (
                         <div key={e._id} className="mob-cat-item jc-center ai-center d-flex  fd-column m-10">
-                            <img src={e.img || 'https://via.placeholder.com/100?text=Category'} alt={e.name} className='m-5' />
+                            <img src={e.imgUrl } alt={e.name} className='m-5' />
                             <h2 className='m-5'>{e.name}</h2>
                             <h4 className='m-5'>Products: {e.medicineCount || 0}</h4>
                             <button className='m-5 p-10 '>Explore</button>
