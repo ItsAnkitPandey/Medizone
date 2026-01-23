@@ -4,8 +4,8 @@ import { useSnackbar } from 'notistack';
 import { useAuth } from '../../contexts/AuthContext';
 import { userAPI } from '../../services/api';
 import { validateEmail, sanitizeInput } from '../../utils/validation';
-import Loader from '../../components/common/Loader/Loader';
 import './Profile.css';
+import GlobalLoader from '../../components/GlobalLoader';
 
 const EditProfile = () => {
   const [formData, setFormData] = useState({
@@ -158,7 +158,7 @@ const EditProfile = () => {
   };
 
   if (loading) {
-    return <Loader />;
+    return <GlobalLoader />;
   }
 
   return (

@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { useAuth } from '../../contexts/AuthContext';
 import { userAPI } from '../../services/api';
-import Loader from '../../components/common/Loader/Loader';
 import './Profile.css';
+import GlobalLoader from '../../components/GlobalLoader';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -39,7 +39,7 @@ const Profile = () => {
   }, [isAuthenticated, navigate, fetchProfile]);
 
   if (loading) {
-    return <Loader />;
+    return <GlobalLoader />;
   }
 
   if (!profile) {

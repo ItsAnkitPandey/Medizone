@@ -1,9 +1,5 @@
-/**
- * Loading Context Provider
- * Manages global loading state for API calls and async operations
- */
-
 import React, { createContext, useContext, useState } from 'react';
+import GlobalLoader from '../components/GlobalLoader';
 
 const LoadingContext = createContext(null);
 
@@ -51,19 +47,7 @@ export const LoadingProvider = ({ children }) => {
     <LoadingContext.Provider value={value}>
       {children}
       {loading && (
-        <div className="global-loader-overlay">
-          <div className="global-loader-spinner">
-            <div className="spinner-large">
-              <div className="pills-container">
-                <div className="pill"></div>
-                <div className="pill"></div>
-                <div className="pill"></div>
-                <div className="pill"></div>
-              </div>
-            </div>
-            {/* <p>Processing...</p> */}
-          </div>
-        </div>
+        <GlobalLoader />
       )}
     </LoadingContext.Provider>
   );

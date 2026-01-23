@@ -7,6 +7,8 @@ import ErrorBoundary from './components/common/ErrorBoundary/ErrorBoundary';
 import ProtectedRoute from './Auth/ProtectedRoute';
 import { useAuth } from './contexts/AuthContext';
 import { useCart } from './contexts/CartContext';
+import GlobalLoader from './components/GlobalLoader';
+
 
 // Lazy load page components for better performance
 const Home = lazy(() => import('./pages/Home/Home'));
@@ -44,7 +46,7 @@ function App() {
     <ErrorBoundary>
         <Router>
           <Navbar loggedIn={isAuthenticated} handleLogout={logout} />
-          <Suspense fallback={<div className="suspense-loader">Loading...</div>}>
+          <Suspense fallback={<GlobalLoader />}>
             <Routes>
               <Route path="/" element={<Home addToCart={handleAddToCart}/>} />
               <Route path="/about" element={<About />} />

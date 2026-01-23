@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import Loader from '../components/common/Loader/Loader';
+import GlobalLoader from '../components/GlobalLoader';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 
   // Show loader while checking authentication
   if (loading) {
-    return <Loader />;
+    return <GlobalLoader />;
   }
 
   // Redirect to login if not authenticated
