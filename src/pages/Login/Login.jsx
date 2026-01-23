@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
-import googleLogo from '../../images/google-social-icon.svg';
 import './Login.css';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { useAuth } from '../../contexts/AuthContext';
 import { authAPI } from '../../services/api';
 import { validateLoginForm, sanitizeInput } from '../../utils/validation';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -93,6 +93,27 @@ const Login = () => {
         }
     };
 
+    const handleGoogleSuccess = async (credentialResponse) => {
+        try {
+            const response = await authAPI.googleAuth(credentialResponse.credential);
+            const { token, user } = response.data;
+
+            login(user, token);
+            enqueueSnackbar('Logged in with Google successfully!', { variant: 'success' });
+            navigate(from, { replace: true });
+        } catch (error) {
+            console.error('Google login error:', error);
+            const errorMessage = 
+                error.response?.data?.message || 
+                'Google login failed. Please try again.';
+            enqueueSnackbar(errorMessage, { variant: 'error' });
+        }
+    };
+
+    const handleGoogleError = () => {
+        enqueueSnackbar('Google login failed. Please try again.', { variant: 'error' });
+    };
+
     return (
         <>
             <div className="login_wrapper">
@@ -104,12 +125,16 @@ const Login = () => {
                             </div>
                             <div className="social_area">
                                 <div>
-                                    <a href="/" className='googleLogin'>
-                                        <button>
-                                            Google
-                                            <img src={googleLogo} alt="Google" className="login-social-icons" />
-                                        </button>
-                                    </a>
+                                    <GoogleLogin
+                                        onSuccess={handleGoogleSuccess}
+                                        onError={handleGoogleError}
+                                        useOneTap
+                                        text="signin_with"
+                                        shape="rectangular"
+                                        theme="outline"
+                                        size="large"
+                                        width="100%"
+                                    />
                                 </div>
                             </div>
                             <div className="social_login_division">

@@ -98,6 +98,7 @@ export const authAPI = {
     api.post('/user/reset-password', { token, newPassword }),
   verifyToken: () => api.get('/user/verify-token'),
   refreshToken: () => api.post('/user/refresh-token'),
+  googleAuth: (credential) => api.post('/user/google-auth', { credential }),
 };
 
 // User API calls

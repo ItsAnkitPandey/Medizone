@@ -13,6 +13,15 @@ const Navbar = ({ loggedIn, handleLogout }) => {
   const { pathname } = useLocation();
   const profileMenuRef = useRef(null);
 
+  // Get user profile image or default avatar
+  const getProfileImage = () => {
+    if (storedUser?.profileImage) {
+      return storedUser.profileImage;
+    }
+    const initial = storedUser?.name?.charAt(0).toUpperCase() || 'U';
+    return `https://ui-avatars.com/api/?name=${initial}&background=2ace6e&color=fff&size=128&bold=true`;
+  };
+
   // Close profile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -62,20 +71,25 @@ const Navbar = ({ loggedIn, handleLogout }) => {
           <Link className={`${selected === 0 ? 'active' : ''}`} to="/" onClick={() => setSelected(0)}><i className='fa-solid fa-house'></i></Link>
           <Link className={`${selected === 1 ? 'active' : ''}`} to="/allmedicines" onClick={() => setSelected(1)}>Medicines</Link>
           <Link className={`${selected === 2 ? 'active' : ''}`} to="/about" onClick={() => setSelected(2)}>About Us</Link>
-          
+
           {loggedIn ? (
             <div className="profile-dropdown" ref={profileMenuRef}>
-              <button 
-                className="profile-btn" 
+              <div
+                className="profile-btn"
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
               >
-                <i className="fa-solid fa-user-circle"></i>
-                <span>{storedUser?.name || 'Profile'}</span>
-                <i className={`fa-solid fa-chevron-${showProfileMenu ? 'up' : 'down'}`}></i>
-              </button>
-              
+                <motion.img
+                  whileTap={{ scale: 0.9 }}
+                  src={getProfileImage()}
+                  alt={storedUser?.name || 'Profile'}
+                  className="nav__avatar"
+                  onClick={() => setShowProfileMenu(!showProfileMenu)}
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+
               {showProfileMenu && (
-                <motion.div 
+                <motion.div
                   className="profile-menu"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -98,9 +112,16 @@ const Navbar = ({ loggedIn, handleLogout }) => {
               )}
             </div>
           ) : (
-            <Link className={`${selected === 3 ? 'active' : ''}`} to="/login" onClick={() => setSelected(3)}>Login</Link>
-          )}
-          
+            <Link to="/login" onClick={() => setSelected(3)}>
+              <motion.img
+                whileTap={{ scale: 0.9 }}
+                src='/images/avatar.png'
+                alt="Login"
+                className="nav__avatar"
+                referrerPolicy="no-referrer"
+              />
+            </Link>)}
+
           <Link to="/contact" className={`${selected === 4 ? 'active' : ''}`} onClick={() => setSelected(4)}>Contact Us</Link>
           <Link className={`${selected === 5 ? 'active' : ''}`} to={loggedIn ? '/cart' : '/login'} onClick={() => setSelected(5)}> <i className="fa-solid fa-cart-shopping"></i><span className='item-count'>{cartCount}</span></Link>
         </div>
@@ -120,31 +141,37 @@ const Navbar = ({ loggedIn, handleLogout }) => {
         <nav className=' d-flex jc-spacearound'>
 
           <Link to={"/"} className={`${selected === 0 ? 'active' : ''}`} onClick={() => { setSelected(0) }}>
-            <i className= "fa-solid fa-home fa-lg" />
+            <i className="fa-solid fa-home fa-lg" />
           </Link>
 
           <Link to={"/allmedicines"} className={`${selected === 1 ? 'active' : ''}`} onClick={() => { setSelected(1) }}>
-            <i className='fa-solid fa-capsules fa-lg'onClick={() => { setSelected(1) }} />
+            <i className='fa-solid fa-capsules fa-lg' onClick={() => { setSelected(1) }} />
           </Link>
 
           {loggedIn ? (
             <div className="mobile-profile-dropdown" ref={profileMenuRef}>
-              <button 
+              <div
                 className={`mobile-profile-btn ${selected === 2 ? 'active' : ''}`}
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
               >
-                <i className='fa-solid fa-user fa-lg' />
-              </button>
-              
+                <motion.img
+                  whileTap={{ scale: 0.9 }}
+                  src={getProfileImage()}
+                  alt={storedUser?.name || 'Profile'}
+                  className="nav__avatar--mobile"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+
               {showProfileMenu && (
-                <motion.div 
+                <motion.div
                   className="mobile-profile-menu"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
                 >
                   <div className="mobile-profile-header">
-                    <i className="fa-solid fa-user-circle"></i>
+                    <img src={getProfileImage()} alt={storedUser?.name} className="mobile-profile-header-img" />
                     <span>{storedUser?.name || 'Profile'}</span>
                   </div>
                   <Link to="/profile" className="mobile-profile-item" onClick={() => { setShowProfileMenu(false); setSelected(2); }}>
@@ -165,7 +192,13 @@ const Navbar = ({ loggedIn, handleLogout }) => {
             </div>
           ) : (
             <Link to={"/login"} className={`${selected === 2 ? 'active' : ''}`} onClick={() => { setSelected(2) }}>
-              <i className='fa-solid fa-user fa-lg' />
+             <motion.img
+                whileTap={{ scale: 0.9 }}
+                src='/images/avatar.png'
+                alt="Login"
+                className="nav__avatar"
+                referrerPolicy="no-referrer"
+              />
             </Link>
           )}
 

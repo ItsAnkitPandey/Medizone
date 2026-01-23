@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import '../Login/Login.css';
-import googleLogo from '../../images/google-social-icon.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { authAPI } from '../../services/api';
 import { validateSignupForm, sanitizeInput, getPasswordStrength } from '../../utils/validation';
+import { GoogleLogin } from '@react-oauth/google';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -16,6 +17,7 @@ const Signup = () => {
     const [passwordStrength, setPasswordStrength] = useState(null);
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const signupPasswordShowHide = () => {
         setShowPassword(!showPassword);
@@ -90,6 +92,27 @@ const Signup = () => {
         }
     };
 
+    const handleGoogleSuccess = async (credentialResponse) => {
+        try {
+            const response = await authAPI.googleAuth(credentialResponse.credential);
+            const { token, user } = response.data;
+
+            login(user, token);
+            enqueueSnackbar('Signed up with Google successfully!', { variant: 'success' });
+            navigate('/', { replace: true });
+        } catch (error) {
+            console.error('Google signup error:', error);
+            const errorMessage = 
+                error.response?.data?.message || 
+                'Google signup failed. Please try again.';
+            enqueueSnackbar(errorMessage, { variant: 'error' });
+        }
+    };
+
+    const handleGoogleError = () => {
+        enqueueSnackbar('Google signup failed. Please try again.', { variant: 'error' });
+    };
+
     return (
         <>
             <div className="login_wrapper">
@@ -101,10 +124,16 @@ const Signup = () => {
                             </div>
                             <div className="social_area">
                                 <div>
-                                    <a href='/' className="googleLogin" disabled>
-                                        Google
-                                        <img src={googleLogo} alt="Google" className="login-social-icons" />
-                                    </a>
+                                    <GoogleLogin
+                                        onSuccess={handleGoogleSuccess}
+                                        onError={handleGoogleError}
+                                        text="signup_with"
+                                        shape="rectangular"
+                                        theme="outline"
+                                        size="large"
+                                        width="100%"
+                                         className="login-social-icons"
+                                    />
                                 </div>
                             </div>
                             <div className="social_login_division">

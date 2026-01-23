@@ -92,7 +92,20 @@
     position: relative;
     margin-left: 8px;
     margin-right: 8px;
+    cursor: pointer;
 }
+
+/* Profile Avatar Styles */
+.nav__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* border: 2px solid var(--primary-color); */
+    cursor: pointer;
+}
+
+
 
 .profile-btn {
     display: flex;
@@ -106,12 +119,6 @@
     font-weight: 600;
     color: black;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.profile-btn:hover {
-    background-color: var(--primary-color);
-    color: white;
 }
 
 .profile-btn i:first-child {
@@ -337,27 +344,23 @@
         background: transparent;
         border: none;
         padding: 7px;
-        border-radius: 10px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.3s ease;
     }
 
-    .mobile-profile-btn i {
-        width: 25px;
-        height: 25px;
-        color: var(--primary-color);
+    .mobile-profile-btn:active,
+    .mobile-profile-btn:hover {
+        background: transparent;
     }
 
-    .mobile-profile-btn.active {
-        background-color: var(--primary-color);
-        color: white;
-    }
-
-    .mobile-profile-btn.active i {
-        color: white;
+    .nav__avatar--mobile {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        /* border: 2px solid var(--primary-color); */
     }
 
     .mobile-profile-menu {
@@ -386,8 +389,12 @@
         font-weight: 600;
     }
 
-    .mobile-profile-header i {
-        font-size: 24px;
+    .mobile-profile-header-img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 2px solid white;
+        object-fit: cover;
     }
 
     .mobile-profile-item {
