@@ -121,6 +121,7 @@ export const cartAPI = {
   addToCart: (medicineId, quantity = 1) => api.post('/cart/add', { medicineId, quantity }),
   updateCart: (itemId, quantity) => api.put('/cart/update', { itemId, quantity }),
   removeFromCart: (itemId) => api.delete(`/cart/remove/${itemId}`),
+  clearCart: () => api.delete('/cart/clear'),
 };
 
 // Medicine API calls

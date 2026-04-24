@@ -23,6 +23,7 @@ const Signup = lazy(() => import('./pages/Signup/Signup'));
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword/ForgotPassword'));
 const Profile = lazy(() => import('./pages/Profile/Profile'));
 const EditProfile = lazy(() => import('./pages/Profile/EditProfile'));
+const Orders = lazy(() => import('./pages/Orders/Orders'));
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 const Popup = lazy(() => import('./components/common/Popup'));
 
@@ -82,6 +83,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <EditProfile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/orders"
+                element={
+                  <ProtectedRoute>
+                    <Orders />
                   </ProtectedRoute>
                 }
               />

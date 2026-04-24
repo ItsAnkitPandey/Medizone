@@ -22,20 +22,6 @@ const Navbar = ({ loggedIn, handleLogout }) => {
     return `https://ui-avatars.com/api/?name=${initial}&background=2ace6e&color=fff&size=128&bold=true`;
   };
 
-  // Close profile menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
-        setShowProfileMenu(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
 
   useEffect(() => {
     window.scrollTo({

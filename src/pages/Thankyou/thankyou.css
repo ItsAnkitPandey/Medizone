@@ -8,7 +8,9 @@
     color: black;
     margin: 50px;
     padding: 20px;
+    min-height: 60vh;
 }
+
 .thank{
     display: flex;
     align-items: center;
@@ -16,10 +18,108 @@
     flex-direction: column;
     margin-bottom: 20px;
 }
+
 .thank > h1{
-    margin-bottom: 4px;
+    margin-bottom: 10px;
     color: green;
+    font-size: 2.5rem;
 }
-.thank >p{
-    font-size: 26px;
+
+.thank > .order-details{
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.thank .order-number {
+    font-size: 1.2rem;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.thank .order-number strong {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+.thank > .order-details p:last-child {
+    color: #718096;
+    font-size: 1rem;
+}
+
+.thank-message{
+    font-size: 1.3rem;
+    color: #4a5568;
+}
+
+.order-summary-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 1.5rem 0;
+    min-width: 300px;
+}
+
+.order-summary-box h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.order-summary-box p {
+    color: #4a5568;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.redirect-timer {
+    color: #718096;
+    font-size: 1rem;
+    margin: 1.5rem 0;
+}
+
+.redirect-timer #timer {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.home-link {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.home-link:hover {
+    background: #228B22;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(42, 206, 110, 0.3);
+}
+
+@media (max-width: 768px) {
+    .thank-container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .thank > h1 {
+        font-size: 2rem;
+    }
+
+    .order-summary-box {
+        min-width: 100%;
+    }
 }

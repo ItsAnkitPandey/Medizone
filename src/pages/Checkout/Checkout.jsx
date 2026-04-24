@@ -1,10 +1,16 @@
 import React, { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import { orderAPI, cartAPI } from '../../services/api';
+import { useCart } from '../../contexts/CartContext';
 import './checkout.css'
 
 const Checkout = ({ cart }) => {
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+  const { clearCart, fetchCart } = useCart();
   const [activeStep, setActiveStep] = useState(1);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     fname: '',
     lname: '',
@@ -54,7 +60,7 @@ const Checkout = ({ cart }) => {
   checkFormProgress();
   }, [formData, paymentOption]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Perform form validation here
@@ -92,13 +98,75 @@ const Checkout = ({ cart }) => {
     if (paymentOption === '') {
       errors.paymentOption = 'Please select a payment option';
     }
+    
     // If there are errors, set them in the state and prevent navigation
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
-    } else {
-      // No errors, navigate to the "thankyou" page
-      navigate('/thankyou');
-      localStorage.removeItem('cart');
+      enqueueSnackbar('Please fill all required fields', { variant: 'error' });
+      return;
+    }
+
+    // No errors, create order
+    setLoading(true);
+    try {
+      const subtotal = cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
+      const tax = subtotal * 0.18;
+      const totalAmount = subtotal + tax;
+
+      // Prepare order data
+      const orderData = {
+        items: cart.map(item => ({
+          id: item._id || item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity
+        })),
+        shippingAddress: {
+          name: `${formData.fname} ${formData.lname}`,
+          street: formData.houseadd,
+          apartment: formData.apartment,
+          city: formData.city,
+          state: formData.state,
+          postalCode: formData.postcode,
+          country: formData.selection,
+          phoneNumber: formData.phone,
+        },
+        paymentMode: paymentOption === 'cd' ? 'COD' : 'CARD',
+        totalAmount: totalAmount,
+        subtotal: subtotal,
+        tax: tax
+      };
+
+      const response = await orderAPI.createOrder(orderData);
+      
+      if (response.data.success) {
+        enqueueSnackbar('Order placed successfully!', { variant: 'success' });
+        
+        // Clear cart from backend
+        try {
+          await cartAPI.clearCart();
+        } catch (error) {
+          console.error('Error clearing cart:', error);
+        }
+        
+        // Clear cart from frontend context and localStorage
+        clearCart();
+        localStorage.removeItem('cart');
+        
+        // Navigate to thank you page with order details
+        navigate('/thankyou', { 
+          state: { 
+            order: response.data.order,
+            orderNumber: response.data.order._id 
+          } 
+        });
+      }
+    } catch (error) {
+      console.error('Order creation error:', error);
+      const errorMessage = error.response?.data?.message || 'Failed to place order. Please try again.';
+      enqueueSnackbar(errorMessage, { variant: 'error' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -318,9 +386,9 @@ const Checkout = ({ cart }) => {
             {formErrors.paymentOption && <span className="error payment-error"><i className="fa-solid fa-circle-exclamation"></i> {formErrors.paymentOption}</span>}
           </div>
           
-          <button type="submit" onClick={handleSubmit} className="place-order-btn">
-            <i className="fa-solid fa-lock"></i>
-            Place Order Securely
+          <button type="submit" onClick={handleSubmit} className="place-order-btn" disabled={loading}>
+            <i className={loading ? "fa-solid fa-spinner fa-spin" : "fa-solid fa-lock"}></i>
+            {loading ? 'Processing Order...' : 'Place Order Securely'}
           </button>
           <p className="secure-note">
             <i className="fa-solid fa-shield-halved"></i>
