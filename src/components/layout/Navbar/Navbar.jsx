@@ -69,7 +69,6 @@ const Navbar = ({ loggedIn, handleLogout }) => {
                   src={getProfileImage()}
                   alt={storedUser?.name || 'Profile'}
                   className="nav__avatar"
-                  onClick={() => setShowProfileMenu(!showProfileMenu)}
                   referrerPolicy="no-referrer"
                 />
               </div>
